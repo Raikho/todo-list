@@ -72,4 +72,8 @@ body {
     padding: 15px;
 
     grid-area: main;
+
+    display: flex;
+    flex-direction: column;
+
 }

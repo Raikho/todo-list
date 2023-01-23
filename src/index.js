@@ -1,18 +1,16 @@
 import './style.css'
 
 import Dom from './dom.js';
-
-document.getElementById('add-task').addEventListener('click', () => {
-    taskArray.push(new Task());
-    Dom.tasks.update(taskArray);
-});
-
+import CreateTask from './task.js';
 const taskArray = [];
 
-function Task() {
-    this.taskNum = 1;
-    this.title = 'title';
-    this.desc = 'desc';
-    this.dueDate = 'dueDate';
-    this.prio = 'priority';
-}
+document.getElementById('add-task').addEventListener('click', () => {
+    let title = Dom.newTask.getTitle();
+    taskArray.push(CreateTask('num',
+                              Dom.newTask.getTitle(),
+                              Dom.newTask.getDesc(),
+                              Dom.newTask.getDueDate(),
+                              Dom.newTask.getPrio(),
+                              ));
+    Dom.tasks.update(taskArray);
+});

@@ -1,4 +1,4 @@
-const taskList =  document.querySelector('.list');
+// const taskList =  document.querySelector('.list');
 
 const createDiv = function(classList, textContent) {
     let node = document.createElement('div');
@@ -8,21 +8,29 @@ const createDiv = function(classList, textContent) {
     return node;
 }
 
+const clearNode = function(node) {
+    while(node.hasChildNodes()) {
+        node.removeChild(node.firstChild);
+    }
+}
+
 const Dom = {}
+Dom.newTask = {
+    getTitle() {return document.getElementById('task-title').value || 'Empty Title'},
+    getDesc() {return document.getElementById('task-desc').value || 'Empty Description'},
+    getDueDate() {return document.getElementById('task-due-date').value || 'Empty Due Date'},
+    getPrio() {return document.getElementById('task-title').value || 'Empty Prio'},
+}
 Dom.tasks = {
-    clear() {
-        while(taskList.hasChildNodes()) {
-            taskList.removeChild(taskList.firstChild);
-        }
-    },
+    taskList: document.querySelector('.list'),
     create(taskArray) {
         for (let task of taskArray) {
             let node = createDiv(['task'], task.title);
-            taskList.appendChild(node);
+            this.taskList.appendChild(node);
         }
     },
     update(taskArray) {
-        this.clear();
+        clearNode(this.taskList);
         this.create(taskArray);
     }
 };
