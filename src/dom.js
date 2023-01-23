@@ -1,7 +1,14 @@
 const taskList =  document.querySelector('.list');
 
-const Dom = {}
+const createDiv = function(classList, textContent) {
+    let node = document.createElement('div');
+    for (let c of classList)
+        node.classList.add(c);
+    node.textContent = textContent;
+    return node;
+}
 
+const Dom = {}
 Dom.tasks = {
     clear() {
         while(taskList.hasChildNodes()) {
@@ -10,9 +17,7 @@ Dom.tasks = {
     },
     create(taskArray) {
         for (let task of taskArray) {
-            let node = document.createElement('div');
-            node.classList.add('task');
-            node.textContent = task.title;
+            let node = createDiv(['task'], task.title);
             taskList.appendChild(node);
         }
     },

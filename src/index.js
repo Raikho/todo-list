@@ -7,8 +7,6 @@ document.getElementById('add-task').addEventListener('click', () => {
     Dom.tasks.update(taskArray);
 });
 
-const taskListNode = document.querySelector('.sidebar>.list');
-
 const taskArray = [];
 
 function Task() {
