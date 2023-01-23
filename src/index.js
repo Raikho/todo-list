@@ -1,12 +1,20 @@
 import './style.css'
 
-const addTaskButton = document.getElementById('add-task');
-addTaskButton.addEventListener('click', () => {
-    console.log('adding task...');
+import Dom from './dom.js';
+
+document.getElementById('add-task').addEventListener('click', () => {
+    taskArray.push(new Task());
+    Dom.tasks.update(taskArray);
 });
 
-console.log('Hello World!');
+const taskListNode = document.querySelector('.sidebar>.list');
+
+const taskArray = [];
 
 function Task() {
-
+    this.taskNum = 1;
+    this.title = 'title';
+    this.desc = 'desc';
+    this.dueDate = 'dueDate';
+    this.prio = 'priority';
 }
