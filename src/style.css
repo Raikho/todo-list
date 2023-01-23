@@ -1,6 +1,41 @@
+:root {
+    --header: dodgerblue;
+    --accent: orange;
+    --lightGray: slategrey;
+    --offwhite: whitesmoke;
+}
+
 body {
-    background-color: darkslategray;
-    color: white;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 0;
+
+    background-color: gray;
+    color: black;
     font-family: verdana;
     font-size: 24px;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 15fr;
+    grid-template-areas: "header header" "sidebar main";
+}
+
+.header {
+    background-color: var(--header);
+    color: white;
+
+    grid-area: header;
+}
+
+.sidebar {
+    background-color: var(--lightGray);
+
+    grid-area: sidebar;
+}
+
+.main {
+    background-color: var(--offwhite);
+
+    grid-area: main;
 }
