@@ -8,13 +8,20 @@ const createDiv = function(classList, textContent) {
     return node;
 }
 
-const clearNode = function(node) {
+// const clearNode = function(node) {
+//     while(node.hasChildNodes()) {
+//         node.removeChild(node.firstChild);
+//     }
+// }
+
+const Dom = {}
+
+Dom.clearNode = function(node) {
     while(node.hasChildNodes()) {
         node.removeChild(node.firstChild);
     }
 }
 
-const Dom = {}
 Dom.newTask = {
     getTitle() {return document.getElementById('task-title').value || 'Empty Title'},
     getDesc() {return document.getElementById('task-desc').value || 'Empty Description'},
@@ -30,7 +37,7 @@ Dom.tasks = {
         }
     },
     update(taskArray) {
-        clearNode(this.taskList);
+        this.clearNode(this.taskList);
         this.create(taskArray);
     }
 };

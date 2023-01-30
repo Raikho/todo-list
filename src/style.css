@@ -5,6 +5,11 @@
     --offwhite: whitesmoke;
 }
 
+.button {
+    padding: 4px 12px;
+    border-radius: 4px;
+    background-color: #daa52088;
+}
 .button:hover {
     background-color: goldenrod;
 }
