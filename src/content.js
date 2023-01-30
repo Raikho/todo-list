@@ -36,7 +36,7 @@ Content.createNewTaskForm = function() {
 
     node = Dom.createLabel('Task Due Date', 'task-due-date');
     this.node.appendChild(node);
-    node = Dom.createInput('text', 'task-due-date');
+    node = Dom.createInput('date', 'task-due-date');
     this.node.appendChild(node);
 
     node = Dom.createLabel('Task Priority', 'task-prio');
