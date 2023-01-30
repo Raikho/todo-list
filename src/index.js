@@ -7,7 +7,7 @@ let state = 'empty'; // 'empty' 'newTask' 'taskDisplay'
 
 function updateState() {
     if (state === 'empty') {
-        const mainNode = document.getElementById('main');
+        const mainNode = document.getElementById('content');
         console.log('state: ', state, mainNode);
         Dom.clearNode(mainNode);
         // document.getElementById
