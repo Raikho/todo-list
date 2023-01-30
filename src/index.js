@@ -8,14 +8,13 @@ const taskArray = [];
 Content.changeState('newTask');
 
 document.getElementById('new-task').addEventListener('click', () => {
-    // newTask.state =
-    // let title = Dom.newTask.getTitle();
-    // taskArray.push(CreateTask('num',
-    //                           Dom.newTask.getTitle(),
-    //                           Dom.newTask.getDesc(),
-    //                           Dom.newTask.getDueDate(),
-    //                           Dom.newTask.getPrio(),
-    //                           ));
+    let title = Dom.newTask.getTitle();
+    taskArray.push(CreateTask('num',
+                              Dom.newTask.getTitle(),
+                              Dom.newTask.getDesc(),
+                              Dom.newTask.getDueDate(),
+                              Dom.newTask.getPrio(),
+                              ));
     // TODO: reset input
-    // Dom.tasks.update(taskArray);
+    Dom.tasks.update(taskArray);
 });

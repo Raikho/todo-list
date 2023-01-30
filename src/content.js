@@ -23,6 +23,26 @@ Content.update = function() {
 
 Content.createNewTaskForm = function() {
     console.log('creating new task form...');
+
+    let node = Dom.createLabel('Task Title', 'task-title');
+    this.node.appendChild(node);
+    node = Dom.createInput('text', 'task-title');
+    this.node.appendChild(node);
+
+    node = Dom.createLabel('Task Description', 'task-desc');
+    this.node.appendChild(node);
+    node = Dom.createInput('text', 'task-desc');
+    this.node.appendChild(node);
+
+    node = Dom.createLabel('Task Due Date', 'task-due-date');
+    this.node.appendChild(node);
+    node = Dom.createInput('text', 'task-due-date');
+    this.node.appendChild(node);
+
+    node = Dom.createLabel('Task Priority', 'task-prio');
+    this.node.appendChild(node);
+    node = Dom.createInput('text', 'task-prio');
+    this.node.appendChild(node);
 }
 
 export default Content;
