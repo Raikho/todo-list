@@ -1,4 +1,6 @@
 import Dom from './dom.js';
+import Task from './task.js';
+
 
 const Content = {};
 
@@ -42,6 +44,15 @@ Content.createNewTaskForm = function() {
     node = Dom.createLabel('Task Priority', 'task-prio');
     this.node.appendChild(node);
     node = Dom.createInput('text', 'task-prio');
+    this.node.appendChild(node);
+
+    node = Dom.createButton('createNewTask', 'Create New Task');
+    node.addEventListener('click', () => {
+        console.log('creating new task...');
+        Task.create();
+        Dom.tasks.update(Task.array);
+        // TODO: reset input
+    });
     this.node.appendChild(node);
 }
 

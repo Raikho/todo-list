@@ -25,6 +25,11 @@ const createInput = function(type, id) {
     node.id = id;
     return node;
 }
+const createButton = function(id, textContent) {
+    let node = createNode('div', ['button'], textContent)
+    node.id = id;
+    return node;
+}
 const clearNode = function(node) {
     while(node.hasChildNodes()) {
         node.removeChild(node.firstChild);
@@ -37,6 +42,7 @@ Dom.createNode = createNode;
 Dom.createDiv = createDiv;
 Dom.createLabel = createLabel;
 Dom.createInput = createInput;
+Dom.createButton = createButton;
 Dom.newTask = {
     getTitle() {return document.getElementById('task-title').value || 'Empty Title'},
     getDesc() {return document.getElementById('task-desc').value || 'Empty Description'},

@@ -2,22 +2,12 @@ import './style.css'
 
 import Dom from './dom.js';
 import Content from './content.js';
-// import CreateTask from './task.js';
 import Task from './task.js';
 
-// Content.changeState('newTask');
+Content.changeState('empty');
 
 document.getElementById('taskForm').addEventListener('click', () => {
-    // taskArray.push(CreateTask('num',
-    //                           Dom.newTask.getTitle(),
-    //                           Dom.newTask.getDesc(),
-    //                           Dom.newTask.getDueDate(),
-    //                           Dom.newTask.getPrio(),
-    //                           ));
-    // TODO: reset input
-    // Dom.tasks.update(taskArray);
-    Task.create();
-    Dom.tasks.update(Task.array);
+   Content.changeState('newTask');
 });
 
 // TODO: reorganize task code location
@@ -26,3 +16,4 @@ document.getElementById('taskForm').addEventListener('click', () => {
 // TODO: form validation
 // TODO: style form
 // TODO: add ability to click tasks
+// TODO: pass node to DOM
