@@ -5,6 +5,7 @@ import Content from './content.js';
 import Task from './task.js';
 
 Content.changeState('empty');
+Content.changeState('newTask');
 
 document.getElementById('taskForm').addEventListener('click', () => {
    Content.changeState('newTask');

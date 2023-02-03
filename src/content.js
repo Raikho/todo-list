@@ -26,34 +26,30 @@ Content.update = function() {
 Content.createNewTaskForm = function() {
     console.log('creating new task form...');
 
-    let node = Dom.createLabel('Task Title', 'task-title');
-    this.node.appendChild(node);
-    node = Dom.createInput('text', 'task-title');
-    this.node.appendChild(node);
+    Dom.createLabeledInput(this.node, 'text', 'task-title', 'Task Title');
 
-    node = Dom.createLabel('Task Description', 'task-desc');
-    this.node.appendChild(node);
-    node = Dom.createInput('text', 'task-desc');
-    this.node.appendChild(node);
+    Dom.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
 
-    node = Dom.createLabel('Task Due Date', 'task-due-date');
-    this.node.appendChild(node);
-    node = Dom.createInput('date', 'task-due-date');
-    this.node.appendChild(node);
+    Dom.createLabeledInput(this.node, 'date', 'task-due-date', 'Task Due Date');
 
-    node = Dom.createLabel('Task Priority', 'task-prio');
-    this.node.appendChild(node);
-    node = Dom.createInput('text', 'task-prio');
-    this.node.appendChild(node);
+    Dom.createLabeledInput(this.node, 'text', 'task-prio', 'Task Priority');
 
-    node = Dom.createButton('createNewTask', 'Create New Task');
-    node.addEventListener('click', () => {
-        console.log('creating new task...');
+    let buttonNode = Dom.createButton(this.node, 'create-new-task', 'Create New task');
+    buttonNode.addEventListener('click', () => {
+        console.log('creating a new task...');
         Task.create();
         Dom.tasks.update(Task.array);
         // TODO: reset input
     });
-    this.node.appendChild(node);
+
+    // node = Dom.createButton('createNewTask', 'Create New Task');
+    // node.addEventListener('click', () => {
+    //     console.log('creating new task...');
+    //     Task.create();
+    //     Dom.tasks.update(Task.array);
+    //     // TODO: reset input
+    // });
+    // this.node.appendChild(node);
 }
 
 export default Content;

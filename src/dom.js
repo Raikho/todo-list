@@ -1,35 +1,35 @@
-// const taskList =  document.querySelector('.list');
-
-const createNode = function(type, classList, textContent) {
+const createNode = function(parentNode, type, classList, textContent) {
     let node = document.createElement(type);
-    if (classList)
-        for (let cls of classList)
+    if (classList) {
+        console.log('classList: ', classList);
+        for (let cls of classList) {
             node.classList.add(cls);
+        }
+    }
     node.textContent = textContent;
+    parentNode.appendChild(node);
     return node;
 }
 
-const createDiv = function(classList, textContent) {
-    let node = createNode('div', classList, textContent);
+const createDiv = function(parentNode, classList, textContent) {
+    return createNode(parentNode, 'div', classList, textContent);
+}
+
+const createLabeledInput = function(parentNode, type, id, textContent) {
+    let labelNode = createNode(parentNode, 'label', null, textContent);
+    labelNode.setAttribute('for', id);
+    let inputNode = createNode(parentNode, 'input');
+    inputNode.type = type;
+    inputNode.id = id;
+    return [labelNode, inputNode];
+}
+
+const createButton = function(parentNode, id, textContent) {
+    let node = createDiv(parentNode, ['button'], textContent);
+    node.id = id;
     return node;
 }
 
-const createLabel = function(textContent, forId) {
-    let node = createNode('label', null, textContent);
-    node.setAttribute('for', forId);
-    return node;
-}
-const createInput = function(type, id) {
-    let node = createNode('input');
-    node.type = type;
-    node.id = id;
-    return node;
-}
-const createButton = function(id, textContent) {
-    let node = createNode('div', ['button'], textContent)
-    node.id = id;
-    return node;
-}
 const clearNode = function(node) {
     while(node.hasChildNodes()) {
         node.removeChild(node.firstChild);
@@ -40,8 +40,7 @@ const Dom = {}
 Dom.clearNode = clearNode;
 Dom.createNode = createNode;
 Dom.createDiv = createDiv;
-Dom.createLabel = createLabel;
-Dom.createInput = createInput;
+Dom.createLabeledInput = createLabeledInput;
 Dom.createButton = createButton;
 Dom.newTask = {
     getTitle() {return document.getElementById('task-title').value || 'Empty Title'},
@@ -53,8 +52,8 @@ Dom.tasks = {
     taskList: document.querySelector('.list'),
     create(taskArray) {
         for (let task of taskArray) {
-            let node = createDiv(['task'], task.title);
-            this.taskList.appendChild(node);
+            // TODO: change location of parent node
+            createDiv(this.taskList, ['task'], task.title);
         }
     },
     update(taskArray) {
