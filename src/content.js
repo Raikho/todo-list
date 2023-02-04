@@ -30,12 +30,17 @@ Content.createTaskForm = function() {
     Dom.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
     Dom.createLabeledInput(this.node, 'date', 'task-due-date', 'Task Due Date');
     Dom.createLabeledInput(this.node, 'text', 'task-prio', 'Task Priority');
-    let buttonNode = Dom.createButton(this.node, 'create-new-task', 'Create New task');
+    let buttonNode = Dom.createButton(this.node, 'create-new-task', null, 'Create New task');
     buttonNode.addEventListener('click', () => {
-        console.log('creating a new task...');
+        console.log('creating a new task...'); // DEBUG
         Task.create();
         Dom.tasks.update(Task.array);
         // TODO: reset input
+    });
+    let backNode = Dom.createButton(this.node, 'clear-task-form', ['back'], 'Back');
+    backNode.addEventListener('click', () => {
+        console.log('clearing task form by back button') // DEBUG
+        Content.changeState('empty');
     });
 }
 

@@ -1,11 +1,8 @@
 const createNode = function(parentNode, type, classList, textContent) {
     let node = document.createElement(type);
-    if (classList) {
-        console.log('classList: ', classList);
-        for (let cls of classList) {
+    if (classList)
+        for (let cls of classList)
             node.classList.add(cls);
-        }
-    }
     node.textContent = textContent;
     parentNode.appendChild(node);
     return node;
@@ -24,8 +21,9 @@ const createLabeledInput = function(parentNode, type, id, textContent) {
     return [labelNode, inputNode];
 }
 
-const createButton = function(parentNode, id, textContent) {
-    let node = createDiv(parentNode, ['button'], textContent);
+const createButton = function(parentNode, id, classList, textContent) {
+    let mergedClassList = (classList) ? ['button', ...classList] : ['button'];
+    let node = createDiv(parentNode, mergedClassList, textContent);
     node.id = id;
     return node;
 }

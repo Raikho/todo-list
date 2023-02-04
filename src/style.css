@@ -14,7 +14,7 @@
     background-color: goldenrod;
 }
 .button:active {background-color: orange;}
-
+.button.back {background-color: #ff450088;}
 body {
     width: 100vw;
     height: 100vh;
@@ -87,5 +87,7 @@ div#content {
 
     display: flex;
     flex-direction: column;
-
+}
+div#content>.button {
+    margin: 20px 0 0 0;
 }
