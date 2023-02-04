@@ -16,6 +16,11 @@ const projectManager = CreateProjectManager();
 CreateProject(projectManager, 'First Project');
 CreateProject(projectManager, 'Second Project');
 
+// DEBUG
+let firstProject = projectManager.projectList[0];
+firstProject.addStartingTask();
+console.log('first project: ', firstProject);
+
 console.log('project manager: ', projectManager); // DEBUG
 Dom.updateSidebar(projectManager);
 

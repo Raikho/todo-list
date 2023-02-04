@@ -1,4 +1,5 @@
 import Dom from './dom.js';
+import { CreateProjectManager } from './project.js';
 
 const Task = {};
 Task.array = [];
@@ -21,4 +22,12 @@ let CreateTask = (taskNum, title, desc, dueDate, prio) => {
     return Object.assign(Object.create(proto), props);
 }
 
+function CreateNewTask(title) {
+    const proto = {
+        title: title || 'Empty Title',
+    };
+    return Object.create(proto);
+}
+
 export default Task;
+export {CreateNewTask};
