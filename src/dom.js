@@ -59,5 +59,14 @@ Dom.tasks = {
         this.create(taskArray);
     }
 };
+Dom.updateSidebar = function(projectManager) {
+    let projectListNode = document.querySelector('.list');
+    clearNode(projectListNode);
+    for (let project of projectManager.projectList) {
+        let groupNode = createDiv(projectListNode, ['project-group']);
+        createDiv(groupNode, ['project'], project.name);
+        // TODO: add task nodes
+    }
+}
 
 export default Dom;
