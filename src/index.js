@@ -1,14 +1,13 @@
 import './style.css'
 
-import Dom from './dom.js';
 import Content from './content.js';
 import Task from './task.js';
 
 Content.changeState('empty');
-Content.changeState('newTask');
+Content.changeState('taskForm');
 
-document.getElementById('taskForm').addEventListener('click', () => {
-   Content.changeState('newTask');
+document.getElementById('createTaskForm').addEventListener('click', () => {
+   Content.changeState('taskForm');
 });
 
 // TODO: reorganize task code location
