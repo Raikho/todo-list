@@ -64,11 +64,21 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-.sidebar>.list>.task {
+.list>.project-group {
     border-radius: 5px;
-    background-color: var(--accent);
+    background-color:#ffff004f;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.project-group>* {
+    border-radius: 5px;
+    background-color: #ff80006e;
     padding: 3px;
 }
+.project-group>.project {font-weight: 700;}
 .sidebar>.new {
     /* border: 1px dotted orange; */
     padding: 0 15px;
