@@ -3,25 +3,41 @@ import Task from './task.js';
 
 
 const Content = {};
-Content.state = null; // 'empty' 'taskForm' 'taskDisplay'
+Content.state = null; // 'empty' 'taskForm' 'projectForm' 'taskDisplay'
 Content.node = document.getElementById('content');
 
-Content.changeState = function(newState) {
+Content.changeState = function(newState, projectManager) {
     console.log('changing state to: ', newState); // DEBUG
     if (this.state !== newState) {
         this.state = newState;
-        this.update();
+        this.update(projectManager);
     }
 }
 
-Content.update = function() {
+Content.update = function(projectManager) {
     console.log('updating... ', this.node); // DEBUG
     Dom.clearNode(this.node);
     switch (this.state) {
+        case 'projectForm':
+            this.createProjectForm(projectManager);
+            break;
         case 'taskForm':
-            this.createTaskForm();
+            this.createTaskForm(projectManager);
             break;
     }
+}
+
+Content.createProjectForm = function(projectManager) {
+    console.log('creating new project form...');
+    const [_, inputNode] = Dom.createLabeledInput(this.node, 'text', 'project-title', 'Project Title');
+
+    let buttonNode = Dom.createButton(this.node, 'create-new-project', null, 'Create New Project');
+    buttonNode.addEventListener('click', () => {
+        console.log('creating a new project..., name value: ', inputNode.value);
+        projectManager.createProject(inputNode.value || 'Default Project Title');
+        Dom.updateSidebar(projectManager)
+        // TODO: reset input
+    });
 }
 
 Content.createTaskForm = function() {
@@ -30,6 +46,7 @@ Content.createTaskForm = function() {
     Dom.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
     Dom.createLabeledInput(this.node, 'date', 'task-due-date', 'Task Due Date');
     Dom.createLabeledInput(this.node, 'text', 'task-prio', 'Task Priority');
+
     let buttonNode = Dom.createButton(this.node, 'create-new-task', null, 'Create New task');
     buttonNode.addEventListener('click', () => {
         console.log('creating a new task...'); // DEBUG

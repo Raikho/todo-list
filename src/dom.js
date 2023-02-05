@@ -65,10 +65,16 @@ Dom.updateSidebar = function(projectManager) {
 
     for (let project of projectManager.projectList) {
         let groupNode = createDiv(projectListNode, ['project-group']);
-        createDiv(groupNode, ['project'], project.name);
+        let projectNode = createDiv(groupNode, ['project'], project.name);
+        projectNode.addEventListener('click', () => {
+            projectManager.selectProject(project);
+            console.log('updated project manager: ', projectManager); // DEBUG
+        })
+
         for (let task of project.taskList) {
             createDiv(groupNode, ['task'], task.title);
         }
+        // TODO: add on click functions, pass through
     }
 }
 
