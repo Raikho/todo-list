@@ -78,6 +78,9 @@ body {
     background-color: #ff80006e;
     padding: 3px;
 }
+.project-group>*[data-selected="true"] {
+    color: darkred;
+}
 .project-group>.project {font-weight: 700;}
 .sidebar>.new {
     /* border: 1px dotted orange; */
