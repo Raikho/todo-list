@@ -25,7 +25,7 @@ ContentManager.prototype.update = function(item) {
             this.createProjectDisplay(item);
             break;
         case 'taskForm':
-            this.createTaskForm();
+            this.createTaskForm(item);
             break;
         case 'taskDisplay':
             this.createTaskDisplay(item);
@@ -61,11 +61,11 @@ ContentManager.prototype.createProjectDisplay = function(project) {
     const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
 
     buttonNode.addEventListener('click', () => {
-        this.changeState('taskForm');
+        this.changeState('taskForm', project);
     });
 }
 
-ContentManager.prototype.createTaskForm = function() {
+ContentManager.prototype.createTaskForm = function(project) {
     console.log('creating new task form...');
 
     let [_, titleNode] = DOM.createLabeledInput(this.node, 'text', 'task-title', 'Task Title');
@@ -78,9 +78,9 @@ ContentManager.prototype.createTaskForm = function() {
     buttonNode.addEventListener('click', () => {
         console.log('creating a new task with name: ', titleNode.value);
 
-        const currProject = this.projectManager.projectList[this.projectManager.selectedProject];
-        currProject.createTask(titleNode.value, descNode.value, dueDateNode.value, prioNode.value);
-        console.log(currProject);
+        // const currProject = this.projectManager.projectList[this.projectManager.selectedProject];
+        project.createTask(titleNode.value, descNode.value, dueDateNode.value, prioNode.value);
+        console.log(project);
 
         this.updateSidebar();
     });
