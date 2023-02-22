@@ -6,14 +6,14 @@ export default function ContentManager(projectManager) {
     this.sidebarNode = document.querySelector('.list');
     this.projectManager = projectManager;
 }
-ContentManager.prototype.changeState = function(newState) {
+ContentManager.prototype.changeState = function(newState, item) {
     console.log('changing state to ', newState);
-    if (this.state !== newState) {
+    if (this.state !== newState || item !== null) {
         this.state = newState;
-        this.update();
+        this.update(item);
     }
 }
-ContentManager.prototype.update = function() {
+ContentManager.prototype.update = function(item) {
     console.log('updating after changing state to ', this.state);
     DOM.clearNode(this.node);
 
@@ -22,13 +22,13 @@ ContentManager.prototype.update = function() {
             this.createProjectForm();
             break;
         case 'projectDisplay':
-            this.createProjectDisplay();
+            this.createProjectDisplay(item);
             break;
         case 'taskForm':
             this.createTaskForm();
             break;
         case 'taskDisplay':
-            this.createTaskDisplay();
+            this.createTaskDisplay(item);
             break;
         case 'empty':
             break;
@@ -53,7 +53,7 @@ ContentManager.prototype.createProjectForm = function() {
     });
 }
 
-ContentManager.prototype.createProjectDisplay = function() {
+ContentManager.prototype.createProjectDisplay = function(project) {
     console.log('creating new project display page...');
 
     // TODO: Display current tasks
@@ -87,10 +87,14 @@ ContentManager.prototype.createTaskForm = function() {
     });
 }
 
-ContentManager.prototype.createTaskDisplay = function() {
+ContentManager.prototype.createTaskDisplay = function(task) {
     console.log('creating new task display page...');
 
-    DOM.createDiv(this.node, null, 'insert title of task here');
+    DOM.createDiv(this.node, null, 'Title: ' + task.title);
+    DOM.createDiv(this.node, null, 'Description: ' + task.desc);
+    DOM.createDiv(this.node, null, 'Due Date: ' + task.dueDate);
+    DOM.createDiv(this.node, null, 'Priority: ' + task.priority);
+    // TODO: Add remaining info, css
 }
 
 ContentManager.prototype.updateSidebar = function() {
@@ -109,7 +113,7 @@ ContentManager.prototype.updateSidebar = function() {
             let taskNode = DOM.createDiv(groupNode, ['task'], task.title);
             taskNode.addEventListener('click', () => {
                 // TODO: add selected task functionality
-                this.changeState('taskDisplay');
+                this.changeState('taskDisplay', task);
             });
         }
     }

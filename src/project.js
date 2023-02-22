@@ -13,6 +13,8 @@ ProjectManager.prototype.selectProject = function(project) {
     this.selectedProject = project.index;
 }
 
+
+
 function Project(name, index) {
     this.name = name;
     this.taskList = [];
@@ -22,7 +24,7 @@ function Project(name, index) {
 }
 Project.prototype.createTask = function(title) {
     // Set index to current taskList length
-    this.taskList.push(new Task(title, this.taskList.length));
+    this.taskList.push(new Task(title, this));
 }
 Project.prototype.selectTask = function(task) {
     console.log('selected task #', this.selectedTask);
