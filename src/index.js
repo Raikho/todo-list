@@ -1,36 +1,21 @@
 import './style.css'
 
-import Content from './content.js';
-import {CreateProjectManager, CreateProject} from './project.js';
-import Task from './task.js';
-import Dom from './dom';
+console.log('Hello, World!');
 
+import ProjectManager from './project.js';
+import ContentManager from './content.js';
 
-// document.getElementById('createTaskForm').addEventListener('click', () => {
-//    Content.changeState('taskForm');
-// });
+const projectManager = new ProjectManager();
+const contentManager = new ContentManager(projectManager);
+
+contentManager.changeState('empty');
+
 document.getElementById('createProjectForm').addEventListener('click', () => {
-   Content.changeState('projectForm');
+    contentManager.changeState('projectForm');
 });
 
-const projectManager = CreateProjectManager();
-// CreateProject(projectManager, 'First Project');
-// CreateProject(projectManager, 'Second Project');
+console.log(projectManager, contentManager)
 
-// INIT
-Content.changeState('empty');
-// Content.changeState('taskForm');
-Content.changeState('projectForm', projectManager);
-
-
-
-// DEBUG
-// let firstProject = projectManager.projectList[0];
-// firstProject.addStartingTask();
-// console.log('first project: ', firstProject);
-
-console.log('project manager: ', projectManager); // DEBUG
-Dom.updateSidebar(projectManager);
 
 
 

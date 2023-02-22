@@ -1,64 +1,117 @@
-import Dom from './dom.js';
-import Task from './task.js';
+import DOM from './dom.js';
 
-
-const Content = {};
-Content.state = null; // 'empty' 'taskForm' 'projectForm' 'taskDisplay'
-Content.node = document.getElementById('content');
-
-Content.changeState = function(newState, projectManager) {
-    console.log('changing state to: ', newState); // DEBUG
+export default function ContentManager(projectManager) {
+    this.state = null; // empty, projectForm, projectDisplay, taskForm, taskDisplay
+    this.node = document.getElementById('content'); // move to input?
+    this.sidebarNode = document.querySelector('.list');
+    this.projectManager = projectManager;
+}
+ContentManager.prototype.changeState = function(newState) {
+    console.log('changing state to ', newState);
     if (this.state !== newState) {
         this.state = newState;
-        this.update(projectManager);
+        this.update();
     }
 }
+ContentManager.prototype.update = function() {
+    console.log('updating after changing state to ', this.state);
+    DOM.clearNode(this.node);
 
-Content.update = function(projectManager) {
-    console.log('updating... ', this.node); // DEBUG
-    Dom.clearNode(this.node);
     switch (this.state) {
         case 'projectForm':
-            this.createProjectForm(projectManager);
+            this.createProjectForm();
+            break;
+        case 'projectDisplay':
+            this.createProjectDisplay();
             break;
         case 'taskForm':
-            this.createTaskForm(projectManager);
+            this.createTaskForm();
+            break;
+        case 'taskDisplay':
+            this.createTaskDisplay();
+            break;
+        case 'empty':
             break;
     }
 }
 
-Content.createProjectForm = function(projectManager) {
+ContentManager.prototype.createProjectForm = function() {
     console.log('creating new project form...');
-    const [_, inputNode] = Dom.createLabeledInput(this.node, 'text', 'project-title', 'Project Title');
 
-    let buttonNode = Dom.createButton(this.node, 'create-new-project', null, 'Create New Project');
+    const [_, inputNode] = DOM.createLabeledInput(this.node, 'text', 'project-title', 'Project Title');
+
+    const buttonNode = DOM.createButton(this.node, 'create-new-project', null, 'Create New Project');
+
     buttonNode.addEventListener('click', () => {
-        console.log('creating a new project..., name value: ', inputNode.value);
-        projectManager.createProject(inputNode.value || 'Default Project Title');
-        Dom.updateSidebar(projectManager)
-        // TODO: reset input
+        console.log('creating a new project with name: ', inputNode.value);
+
+        this.projectManager.createProject(inputNode.value || 'Default Project Title');
+
+        this.updateSidebar();
+
+        this.changeState('empty');
     });
 }
 
-Content.createTaskForm = function() {
-    console.log('creating new task form...'); // DEBUG
-    Dom.createLabeledInput(this.node, 'text', 'task-title', 'Task Title');
-    Dom.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
-    Dom.createLabeledInput(this.node, 'date', 'task-due-date', 'Task Due Date');
-    Dom.createLabeledInput(this.node, 'text', 'task-prio', 'Task Priority');
+ContentManager.prototype.createProjectDisplay = function() {
+    console.log('creating new project display page...');
 
-    let buttonNode = Dom.createButton(this.node, 'create-new-task', null, 'Create New task');
+    // TODO: Display current tasks
+
+    const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
+
     buttonNode.addEventListener('click', () => {
-        console.log('creating a new task...'); // DEBUG
-        Task.create();
-        Dom.tasks.update(Task.array);
-        // TODO: reset input
-    });
-    let backNode = Dom.createButton(this.node, 'clear-task-form', ['back'], 'Back');
-    backNode.addEventListener('click', () => {
-        console.log('clearing task form by back button') // DEBUG
-        Content.changeState('empty');
+        this.changeState('taskForm');
     });
 }
 
-export default Content;
+ContentManager.prototype.createTaskForm = function() {
+    console.log('creating new task form...');
+
+    let [_, titleNode] = DOM.createLabeledInput(this.node, 'text', 'task-title', 'Task Title');
+
+    let [__, descNode] = DOM.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
+
+    const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
+
+    buttonNode.addEventListener('click', () => {
+        console.log('creating a new task with name: ', titleNode.value);
+
+        const currProject = this.projectManager.projectList[this.projectManager.selectedProject];
+        currProject.createTask(titleNode.value);
+        console.log(currProject);
+
+        this.updateSidebar();
+
+        // TODO: change state: task display
+    });
+}
+
+ContentManager.prototype.createTaskDisplay = function() {
+    console.log('creating new task display page...');
+
+    DOM.createDiv(this.node, null, 'insert title of task here');
+}
+
+ContentManager.prototype.updateSidebar = function() {
+    console.log('updating sidebar...');
+    DOM.clearNode(this.sidebarNode);
+
+    for (let project of this.projectManager.projectList) {
+        let groupNode = DOM.createDiv(this.sidebarNode, ['project-group']);
+        let projectNode = DOM.createDiv(groupNode, ['project'], project.name);
+        projectNode.addEventListener('click', () => {
+            this.projectManager.selectProject(project);
+            this.changeState('projectDisplay');
+        });
+
+        for (let task of project.taskList) {
+            let taskNode = DOM.createDiv(groupNode, ['task'], task.title);
+            taskNode.addEventListener('click', () => {
+                // TODO: add selected task functionality
+                this.changeState('taskDisplay');
+            });
+        }
+    }
+
+}

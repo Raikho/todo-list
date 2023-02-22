@@ -1,5 +1,13 @@
-const createNode = function(parentNode, type, classList, textContent) {
-    let node = document.createElement(type);
+const DOM = {};
+
+DOM.clearNode = function(node) {
+    while(node.hasChildNodes()) {
+        node.removeChild(node.firstChild);
+    }
+}
+
+DOM.createNode = function(parentNode, tag, classList, textContent) {
+    let node = document.createElement(tag);
     if (classList)
         for (let cls of classList)
             node.classList.add(cls);
@@ -8,74 +16,24 @@ const createNode = function(parentNode, type, classList, textContent) {
     return node;
 }
 
-const createDiv = function(parentNode, classList, textContent) {
-    return createNode(parentNode, 'div', classList, textContent);
+DOM.createDiv = function(parentNode, classList, textContent) {
+   return this.createNode(parentNode, 'div', classList, textContent)
 }
 
-const createLabeledInput = function(parentNode, type, id, textContent) {
-    let labelNode = createNode(parentNode, 'label', null, textContent);
+DOM.createLabeledInput = function(parentNode, inputType, id, textContent) {
+    let labelNode = this.createNode(parentNode, 'label', null, textContent);
     labelNode.setAttribute('for', id);
-    let inputNode = createNode(parentNode, 'input');
-    inputNode.type = type;
+    let inputNode = this.createNode(parentNode, 'input');
+    inputNode.type = inputType;
     inputNode.id = id;
     return [labelNode, inputNode];
 }
 
-const createButton = function(parentNode, id, classList, textContent) {
+DOM.createButton = function(parentNode, id, classList, textContent) {
     let mergedClassList = (classList) ? ['button', ...classList] : ['button'];
-    let node = createDiv(parentNode, mergedClassList, textContent);
+    let node = this.createDiv(parentNode, mergedClassList, textContent);
     node.id = id;
     return node;
 }
 
-const clearNode = function(node) {
-    while(node.hasChildNodes()) {
-        node.removeChild(node.firstChild);
-    }
-}
-
-const Dom = {}
-Dom.clearNode = clearNode;
-Dom.createNode = createNode;
-Dom.createDiv = createDiv;
-Dom.createLabeledInput = createLabeledInput;
-Dom.createButton = createButton;
-Dom.newTask = {
-    getTitle() {return document.getElementById('task-title').value || 'Empty Title'},
-    getDesc() {return document.getElementById('task-desc').value || 'Empty Description'},
-    getDueDate() {return document.getElementById('task-due-date').value || 'Empty Due Date'},
-    getPrio() {return document.getElementById('task-title').value || 'Empty Prio'},
-}
-Dom.tasks = {
-    taskList: document.querySelector('.list'),
-    create(taskArray) {
-        for (let task of taskArray) {
-            // TODO: change location of parent node
-            createDiv(this.taskList, ['task'], task.title);
-        }
-    },
-    update(taskArray) {
-        clearNode(this.taskList);
-        this.create(taskArray);
-    }
-};
-Dom.updateSidebar = function(projectManager) {
-    let projectListNode = document.querySelector('.list');
-    clearNode(projectListNode);
-
-    for (let project of projectManager.projectList) {
-        let groupNode = createDiv(projectListNode, ['project-group']);
-        let projectNode = createDiv(groupNode, ['project'], project.name);
-        projectNode.addEventListener('click', () => {
-            projectManager.selectProject(project);
-            console.log('updated project manager: ', projectManager); // DEBUG
-        })
-
-        for (let task of project.taskList) {
-            createDiv(groupNode, ['task'], task.title);
-        }
-        // TODO: add on click functions, pass through
-    }
-}
-
-export default Dom;
+export default DOM;
