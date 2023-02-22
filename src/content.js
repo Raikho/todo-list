@@ -78,7 +78,6 @@ ContentManager.prototype.createTaskForm = function(project) {
     buttonNode.addEventListener('click', () => {
         console.log('creating a new task with name: ', titleNode.value);
 
-        // const currProject = this.projectManager.projectList[this.projectManager.selectedProject];
         project.createTask(titleNode.value, descNode.value, dueDateNode.value, prioNode.value);
         console.log(project);
 
@@ -94,6 +93,14 @@ ContentManager.prototype.createTaskDisplay = function(task) {
     DOM.createDiv(this.node, null, 'Due Date: ' + task.dueDate);
     DOM.createDiv(this.node, null, 'Priority: ' + task.prio);
     // TODO: css classes
+
+    // Delete Button
+    const deleteButton = DOM.createButton(this.node, 'delete-task', null, 'Delete Task');
+    deleteButton.addEventListener('click', () => {
+        task.delete();
+        this.updateSidebar();
+        this.changeState('empty');
+    });
 }
 
 ContentManager.prototype.updateSidebar = function() {
@@ -102,7 +109,7 @@ ContentManager.prototype.updateSidebar = function() {
 
     for (let project of this.projectManager.projectList) {
         let groupNode = DOM.createDiv(this.sidebarNode, ['project-group']);
-        let projectNode = DOM.createDiv(groupNode, ['project'], project.name);
+        let projectNode = DOM.createDiv(groupNode, ['project'], project.name + ' : ' + project.index);
 
         projectNode.dataset.selected = project.selected;
 
@@ -113,7 +120,7 @@ ContentManager.prototype.updateSidebar = function() {
         });
 
         for (let task of project.taskList) {
-            let taskNode = DOM.createDiv(groupNode, ['task'], task.title);
+            let taskNode = DOM.createDiv(groupNode, ['task'], task.title + " : " + task.index);
 
             taskNode.dataset.selected = task.selected;
 

@@ -47,3 +47,9 @@ Project.prototype.select = function() {
     this.manager.clearSelection();
     this.selected = true;
 }
+Project.prototype.deleteTask = function(index) {
+    this.taskList.splice(index, 1);
+    for (let i = 0; i < this.taskList.length; i++) {
+        this.taskList[i].index = i;
+    }
+}

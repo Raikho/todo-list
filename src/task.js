@@ -13,3 +13,6 @@ Task.prototype.select = function() {
     this.project.manager.clearSelection();
     this.selected = true;
 }
+Task.prototype.delete = function() {
+    this.project.deleteTask(this.index);
+}
