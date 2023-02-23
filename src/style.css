@@ -82,49 +82,51 @@ body {
 }
 
 /* ========== Project Container ========== */
-.sidebar .project-container {
+.project-container {
     display: grid;
     grid-template-columns: 20px 5px 1fr;
     grid-template-areas: "icon .. title";
 }
-.sidebar .project-icon {
+.project-container>.icon {
     grid-area: icon;
     background-image: url('assets/project.svg');
     background-repeat: no-repeat;
 }
-.sidebar .project {
+.project-container>.title {
     grid-area: title;
     font-weight: 700;
 }
-.sidebar .project[data-selected="true"] {color: darkred;}
+.project-container>.title[data-selected="true"],
+.task-container>.title[data-selected="true"] {
+    color: darkred;
+}
 
 /* ========== Task Container ========== */
-.sidebar .task-container {
+.task-container {
     display: grid;
     grid-template-columns: 20px 20px 5px 1fr 20px;
     grid-template-areas: ".. icon .. title checkbox";
 }
 /* .sidebar .task-container>* {border: 1px dotted darkblue;} */
-.sidebar .task-icon {
+.task-container>.icon {
     grid-area: icon;
     background-image: url('assets/task.svg');
     background-repeat: no-repeat;
     background-size: 15px;
     background-position: center;
 }
-.sidebar .task-checkbox {
+.task-container>.title {grid-area: title;}
+.task-container>.checkbox {
     grid-area: checkbox;
     background-size: 20px;
     background-image: url('assets/checkbox-unchecked.svg');
     background-repeat: no-repeat;
 }
-.sidebar .task {grid-area: title;}
-.sidebar .task-checkbox[data-checked="true"] {
+.task-container>.checkbox[data-checked="true"] {
     background-image: url('assets/checkbox-checked.svg');
 }
-.sidebar .task[data-selected="true"] {color: darkred;}
 /* ========== Bottom, New Project ========== */
-.sidebar>.new {
+.sidebar>.bot {
     /* border: 1px dotted orange; */
     padding: 0 15px;
     border-top: 1px solid #a9a9a9aa;
