@@ -3,6 +3,7 @@ export default function Task(project, title, desc, dueDate, prio) {
     this.desc = desc || 'placeholder description';
     this.dueDate = dueDate || '01/01/2023';
     this.prio = prio || 0;
+    this.checked = false;
 
     this.selected = false;
     this.project = project;

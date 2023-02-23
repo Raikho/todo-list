@@ -99,8 +99,13 @@ ContentManager.prototype.updateSidebar = function() {
             let taskNode = DOM.createDiv(taskContainerNode, ['task'], task.title + " : " + task.index);
             let taskCheckboxNode = DOM.createDiv(taskContainerNode, ['task-checkbox']);
 
+            taskCheckboxNode.dataset.checked = task.checked;
             taskNode.dataset.selected = task.selected;
 
+            taskCheckboxNode.addEventListener('click', () => {
+                task.checked = !task.checked;
+                this.updateSidebar();
+            });
             taskNode.addEventListener('click', () => {
                 task.select();
                 this.updateSidebar();

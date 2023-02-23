@@ -88,11 +88,12 @@ body {
     justify-content: space-between;
 }
 .sidebar .task-checkbox {
-    background-image: url('assets/checkbox-unchecked.svg');
     width: 20px;
+    background-image: url('assets/checkbox-unchecked.svg');
 }
-.project-group>.task {
-
+.sidebar .task-checkbox[data-checked="true"] {
+    width: 20px;
+    background-image: url('assets/checkbox-checked.svg');
 }
 
 /* ========== Bottom, New Project ========== */
