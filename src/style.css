@@ -64,7 +64,7 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-.list>.project-group {
+.project-group {
     border-radius: 5px;
     background-color:#ffff004f;
     padding: 10px;
@@ -82,6 +82,20 @@ body {
     color: darkred;
 }
 .project-group>.project {font-weight: 700;}
+
+.sidebar .task-container {
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar .task-checkbox {
+    background-image: url('assets/checkbox-unchecked.svg');
+    width: 20px;
+}
+.project-group>.task {
+
+}
+
+/* ========== Bottom, New Project ========== */
 .sidebar>.new {
     /* border: 1px dotted orange; */
     padding: 0 15px;
