@@ -8,16 +8,27 @@ import ContentManager from './content.js';
 const projectManager = new ProjectManager();
 const contentManager = new ContentManager(projectManager);
 
-contentManager.changeState('empty');
 
 document.getElementById('createProjectForm').addEventListener('click', () => {
     contentManager.changeState('projectForm');
 });
 
+
+
+// INITIAL VALUES
+projectManager.createProject('Main Project');
+projectManager.projectList[0].createTask('First Task');
+projectManager.projectList[0].createTask('Second Task');
+projectManager.projectList[0].createTask('Third Task');
+projectManager.createProject('Secondary Project');
+projectManager.projectList[1].createTask('First Task');
+projectManager.projectList[1].createTask('Second Task');
+
+contentManager.changeState('empty');
+contentManager.updateSidebar();
+
+// DEBUG
 console.log(projectManager, contentManager)
-
-
-
 
 // TODO: reorganize task code location
 // TODO: add icons

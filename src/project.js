@@ -5,6 +5,7 @@ export default function ProjectManager() {
     this.selectedProject = null;
 }
 ProjectManager.prototype.createProject = function(name) {
+    console.log('creating new project with name: ', name);
     // Set index to current projectList length
     this.projectList.push(new Project(this, name, this.projectList.length));
 }
@@ -24,7 +25,7 @@ ProjectManager.prototype.clearSelection = function() {
 
 
 function Project(manager, name, index) {
-    this.name = name;
+    this.name = name;   // TODO: convert name to title
     this.taskList = [];
     this.selectedTask = null;
 
