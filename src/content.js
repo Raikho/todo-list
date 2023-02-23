@@ -84,7 +84,10 @@ ContentManager.prototype.updateSidebar = function() {
 
     for (let project of this.projectManager.projectList) {
         let projectGroupNode = DOM.createDiv(this.sidebarNode, ['project-group']);
-        let projectNode = DOM.createDiv(projectGroupNode, ['project'], project.name + ' : ' + project.index);
+
+        let projectContainerNode = DOM.createDiv(projectGroupNode, ['project-container']);
+        let projectIconNode = DOM.createDiv(projectContainerNode, ['project-icon']);
+        let projectNode = DOM.createDiv(projectContainerNode, ['project'], project.name + ' #' + project.index);
 
         projectNode.dataset.selected = project.selected;
 
@@ -96,7 +99,8 @@ ContentManager.prototype.updateSidebar = function() {
 
         for (let task of project.taskList) {
             let taskContainerNode = DOM.createDiv(projectGroupNode, ['task-container']);
-            let taskNode = DOM.createDiv(taskContainerNode, ['task'], task.title + " : " + task.index);
+            let taskIconNode = DOM.createDiv(taskContainerNode, ['task-icon']);
+            let taskNode = DOM.createDiv(taskContainerNode, ['task'], task.title + " #" + task.index);
             let taskCheckboxNode = DOM.createDiv(taskContainerNode, ['task-checkbox']);
 
             taskCheckboxNode.dataset.checked = task.checked;

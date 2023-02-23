@@ -64,9 +64,11 @@ body {
     flex-direction: column;
     gap: 15px;
 }
+
+/* ========== Project Group ========== */
 .project-group {
     border-radius: 5px;
-    background-color:#ffff004f;
+    background-color:#ffff0022;
     padding: 10px;
 
     display: flex;
@@ -75,27 +77,52 @@ body {
 }
 .project-group>* {
     border-radius: 5px;
-    background-color: #ff80006e;
+    background-color: #ff800044;
     padding: 3px;
 }
-.project-group>*[data-selected="true"] {
-    color: darkred;
-}
-.project-group>.project {font-weight: 700;}
 
+/* ========== Project Container ========== */
+.sidebar .project-container {
+    display: grid;
+    grid-template-columns: 20px 5px 1fr;
+    grid-template-areas: "icon .. title";
+}
+.sidebar .project-icon {
+    grid-area: icon;
+    background-image: url('assets/project.svg');
+    background-repeat: no-repeat;
+}
+.sidebar .project {
+    grid-area: title;
+    font-weight: 700;
+}
+.sidebar .project[data-selected="true"] {color: darkred;}
+
+/* ========== Task Container ========== */
 .sidebar .task-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 20px 20px 5px 1fr 20px;
+    grid-template-areas: ".. icon .. title checkbox";
+}
+/* .sidebar .task-container>* {border: 1px dotted darkblue;} */
+.sidebar .task-icon {
+    grid-area: icon;
+    background-image: url('assets/task.svg');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
 }
 .sidebar .task-checkbox {
-    width: 20px;
+    grid-area: checkbox;
+    background-size: 20px;
     background-image: url('assets/checkbox-unchecked.svg');
+    background-repeat: no-repeat;
 }
+.sidebar .task {grid-area: title;}
 .sidebar .task-checkbox[data-checked="true"] {
-    width: 20px;
     background-image: url('assets/checkbox-checked.svg');
 }
-
+.sidebar .task[data-selected="true"] {color: darkred;}
 /* ========== Bottom, New Project ========== */
 .sidebar>.new {
     /* border: 1px dotted orange; */
