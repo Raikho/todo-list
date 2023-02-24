@@ -25,8 +25,9 @@ ContentManager.prototype.update = function(item) {
 }
 
 ContentManager.prototype.createProjectForm = function() {
-    const [_, inputNode] = DOM.createLabeledInput(this.node, 'text', 'project-title', 'Project Title');
-    const buttonNode = DOM.createButton(this.node, 'create-new-project', null, 'Create New Project');
+    let containerNode = DOM.createDiv(this.node, ['project-form-container']);
+    const [_, inputNode] = DOM.createLabeledInput(containerNode, 'text', 'project-title', 'Project Title');
+    const buttonNode = DOM.createButton(containerNode, 'create-new-project', null, 'Create New Project');
 
     buttonNode.addEventListener('click', () => {
         this.projectManager.createProject(inputNode.value || 'Default Project Title');
@@ -36,11 +37,12 @@ ContentManager.prototype.createProjectForm = function() {
 }
 
 ContentManager.prototype.createProjectDisplay = function(project) {
-    DOM.createDiv(this.node, null, 'Project Title: ' + project.name);
+    let containerNode = DOM.createDiv(this.node, ['project-display-container']);
+    DOM.createDiv(containerNode, null, 'Project Title: ' + project.name);
 
-    DOM.createDiv(this.node, null, 'Tasks: ');
+    DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
-        DOM.createDiv(this.node, null, task.title);
+        DOM.createDiv(containerNode, null, task.title);
     }
 
     const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
@@ -50,12 +52,13 @@ ContentManager.prototype.createProjectDisplay = function(project) {
 }
 
 ContentManager.prototype.createTaskForm = function(project) {
-    let [_, titleNode] = DOM.createLabeledInput(this.node, 'text', 'task-title', 'Task Title');
-    let [__, descNode] = DOM.createLabeledInput(this.node, 'text', 'task-desc', 'Task Description');
-    let [___, dueDateNode] = DOM.createLabeledInput(this.node, 'date', 'task-due-date', 'Task Due Date');
-    let [____, prioNode] = DOM.createLabeledInput(this.node, 'number', 'task-prio', 'Task Priority');
+    let containerNode = DOM.createDiv(this.node, ['task-form-container']);
+    let [_, titleNode] = DOM.createLabeledInput(containerNode, 'text', 'task-title', 'Task Title');
+    let [__, descNode] = DOM.createLabeledInput(containerNode, 'text', 'task-desc', 'Task Description');
+    let [___, dueDateNode] = DOM.createLabeledInput(containerNode, 'date', 'task-due-date', 'Task Due Date');
+    let [____, prioNode] = DOM.createLabeledInput(containerNode, 'number', 'task-prio', 'Task Priority');
 
-    const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
+    const buttonNode = DOM.createButton(containerNode, 'create-new-task', null, 'Create New Task');
 
     buttonNode.addEventListener('click', () => {
         project.createTask(titleNode.value, descNode.value, dueDateNode.value, prioNode.value);
@@ -64,10 +67,11 @@ ContentManager.prototype.createTaskForm = function(project) {
 }
 
 ContentManager.prototype.createTaskDisplay = function(task) {
-    DOM.createDiv(this.node, null, 'Title: ' + task.title);
-    DOM.createDiv(this.node, null, 'Description: ' + task.desc);
-    DOM.createDiv(this.node, null, 'Due Date: ' + task.dueDate);
-    DOM.createDiv(this.node, null, 'Priority: ' + task.prio);
+    let containerNode = DOM.createDiv(this.node, ['task-display-container']);
+    DOM.createDiv(containerNode, null, 'Title: ' + task.title);
+    DOM.createDiv(containerNode, null, 'Description: ' + task.desc);
+    DOM.createDiv(containerNode, null, 'Due Date: ' + task.dueDate);
+    DOM.createDiv(containerNode, null, 'Priority: ' + task.prio);
     // TODO: css classes
 
     // Delete Button
