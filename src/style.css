@@ -11,7 +11,27 @@
     --darkBlue: #1f2937;
 
     --skyBlue: #38bdf8;
-    --indigo: #312e81;
+    --indigo: #05050788;
+    --indigoBrighter: #45455f88;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300,400,500,700");
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 0;
+
+    color: var(--darkBlue);
+    /* font-family: 'Roboto'; */
+    font-family: Helvetica;
+    font-weight: 400;
+    font-size: 16px;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 15fr;
+    grid-template-areas: "header header" "sidebar main";
 }
 
 .button {
@@ -24,21 +44,6 @@
 }
 .button:active {background-color: orange;}
 .button.back {background-color: #ff450088;}
-body {
-    width: 100vw;
-    height: 100vh;
-    margin: 0 0;
-
-    background-color: gray;
-    color: black;
-    font-family: verdana;
-    font-size: 16px;
-
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 15fr;
-    grid-template-areas: "header header" "sidebar main";
-}
 
 /* ============================= Header ============================ */
 /* ================================================================= */
@@ -58,6 +63,7 @@ body {
 .sidebar {
     grid-area: sidebar;
 
+    font-size: 14px;
     background-color: var(--lightGray);
     box-shadow: 4px 4px 4px #0003;
     z-index: 1;
@@ -77,17 +83,16 @@ body {
 /* ========== Project Group ========== */
 .project-group {
     border-radius: 5px;
-    background-color:#ffff0022;
-    padding: 10px;
+    /* border: 1px dotted lightcoral; */
+    padding: 5px;
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 .project-group>* {
     border-radius: 5px;
-    background-color: #ff800044;
-    padding: 3px;
+    /* background-color: #ff800044; */
+    padding: 2px;
 }
 
 /* ========== Project Container ========== */
@@ -111,9 +116,14 @@ body {
     grid-area: title;
     font-weight: 700;
 }
-.project-container>.title[data-selected="true"],
-.task-container>.title[data-selected="true"] {
-    color: darkred;
+.project-container[data-selected="true"],
+.task-container[data-selected="true"] {
+    background-color: lightgray;
+}
+.project-container>.title:hover,
+.task-container>.title:hover
+{
+    filter: brightness(3.5);
 }
 
 /* ========== Task Container ========== */
@@ -123,7 +133,10 @@ body {
     grid-template-areas: "checkbox .. title";
 }
 /* .sidebar .task-container>* {border: 1px dotted darkblue;} */
-.task-container>.title {grid-area: title;}
+.task-container>.title {
+    grid-area: title;
+    align-self: center;
+}
 .task-container>.checkbox {
     grid-area: checkbox;
 
@@ -132,12 +145,17 @@ body {
     -webkit-mask-image: url('assets/checkbox-unchecked.svg');
     mask-image: url('assets/checkbox-unchecked.svg');
     background-color: var(--indigo);
+    width: 20px;
+    height: 20px;
 }
 .task-container>.checkbox[data-checked="true"] {
     -webkit-mask-image: url('assets/checkbox-checked.svg');
     mask-image: url('assets/checkbox-checked.svg');
 }
-.task-container>.checkbox:hover {filter: brightness(1.5)}
+.task-container>.checkbox:hover {
+    background-color: var(--indigoBrighter);
+}
+
 /* ========== Bottom, New Project ========== */
 .sidebar>.bot {
     /* border: 1px dotted orange; */
