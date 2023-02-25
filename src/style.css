@@ -181,13 +181,14 @@ div#content>.button {
 }
 /* ========================= Task Display ========================== */
 .card {
-    background-color: lightblue;
-    border-radius: 4px;
     padding: 10px;
-    box-shadow: 4px 4px 4px #0003;
+    border-bottom: 2px solid lightgray;
+
+    /* background-color: rgba(173, 216, 230, 0.216); */
 }
 .task-display-container {
-    margin-right: 20%;
+    padding: 20px;
+    /* margin-right: 20%; */
 
     display: grid;
     grid-template-columns: 1fr;
@@ -203,6 +204,8 @@ div#content>.button {
 
 .task-display-container>.task-title {
     grid-area: title;
+    font-size: 24px;
+    font-weight: 700;
 }
 #delete-task {
     grid-area: delete;
@@ -211,3 +214,4 @@ div#content>.button {
     padding: 8px 24px;
 }
 #delete-task:hover {filter: brightness(1.1);}
+/* ========================= Project Display ========================== */

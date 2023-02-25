@@ -38,7 +38,7 @@ ContentManager.prototype.createProjectForm = function() {
 
 ContentManager.prototype.createProjectDisplay = function(project) {
     let containerNode = DOM.createDiv(this.node, ['project-display-container']);
-    DOM.createDiv(containerNode, null, 'Project Title: ' + project.name);
+    DOM.createDiv(containerNode, ['card'], 'Project Title: ' + project.name);
 
     DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
