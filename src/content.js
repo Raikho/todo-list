@@ -68,14 +68,14 @@ ContentManager.prototype.createTaskForm = function(project) {
 
 ContentManager.prototype.createTaskDisplay = function(task) {
     let containerNode = DOM.createDiv(this.node, ['task-display-container']);
-    DOM.createDiv(containerNode, null, 'Title: ' + task.title);
-    DOM.createDiv(containerNode, null, 'Description: ' + task.desc);
-    DOM.createDiv(containerNode, null, 'Due Date: ' + task.dueDate);
-    DOM.createDiv(containerNode, null, 'Priority: ' + task.prio);
+    DOM.createDiv(containerNode, ['task-title', 'card'], 'Title: ' + task.title);
+    DOM.createDiv(containerNode, ['task-desc', 'card'], 'Description: ' + task.desc);
+    DOM.createDiv(containerNode, ['task-due-date', 'card'], 'Due Date: ' + task.dueDate);
+    DOM.createDiv(containerNode, ['task-prio', 'card'], 'Priority: ' + task.prio);
     // TODO: css classes
 
     // Delete Button
-    const deleteButton = DOM.createButton(this.node, 'delete-task', null, 'Delete Task');
+    const deleteButton = DOM.createButton(containerNode, 'delete-task', null, 'Delete Task');
     deleteButton.addEventListener('click', () => {
         task.delete();
         this.updateSidebar();

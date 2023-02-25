@@ -1,8 +1,17 @@
 :root {
     --header: dodgerblue;
     --accent: orange;
-    --lightGray: slategrey;
-    --offwhite: whitesmoke;
+    --lightGray2: slategrey;
+    --offwhite2: whitesmoke;
+
+    --darkBackground: #1f2937;
+    --offwhite: #f9faf8;
+    --lightGray: #e5e7eb;
+    --blue: #3882f6;
+    --darkBlue: #1f2937;
+
+    --skyBlue: #38bdf8;
+    --indigo: #312e81;
 }
 
 .button {
@@ -89,8 +98,14 @@ body {
 }
 .project-container>.icon {
     grid-area: icon;
-    background-image: url('assets/project.svg');
-    background-repeat: no-repeat;
+
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url('assets/project.svg');
+    mask-image: url('assets/project.svg');
+    background-color: var(--skyBlue);
+    width: 20px;
+    height: 20px;
 }
 .project-container>.title {
     grid-area: title;
@@ -104,27 +119,25 @@ body {
 /* ========== Task Container ========== */
 .task-container {
     display: grid;
-    grid-template-columns: 20px 20px 5px 1fr 20px;
-    grid-template-areas: ".. icon .. title checkbox";
+    grid-template-columns: 20px 5px 1fr;
+    grid-template-areas: "checkbox .. title";
 }
 /* .sidebar .task-container>* {border: 1px dotted darkblue;} */
-.task-container>.icon {
-    grid-area: icon;
-    background-image: url('assets/task.svg');
-    background-repeat: no-repeat;
-    background-size: 15px;
-    background-position: center;
-}
 .task-container>.title {grid-area: title;}
 .task-container>.checkbox {
     grid-area: checkbox;
-    background-size: 20px;
-    background-image: url('assets/checkbox-unchecked.svg');
-    background-repeat: no-repeat;
+
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url('assets/checkbox-unchecked.svg');
+    mask-image: url('assets/checkbox-unchecked.svg');
+    background-color: var(--indigo);
 }
 .task-container>.checkbox[data-checked="true"] {
-    background-image: url('assets/checkbox-checked.svg');
+    -webkit-mask-image: url('assets/checkbox-checked.svg');
+    mask-image: url('assets/checkbox-checked.svg');
 }
+.task-container>.checkbox:hover {filter: brightness(1.5)}
 /* ========== Bottom, New Project ========== */
 .sidebar>.bot {
     /* border: 1px dotted orange; */
@@ -148,3 +161,35 @@ div#content {
 div#content>.button {
     margin: 20px 0 0 0;
 }
+/* ========================= Task Display ========================== */
+.card {
+    background-color: lightblue;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 4px 4px 4px #0003;
+}
+.task-display-container {
+    margin-right: 20%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 4fr 1fr 1fr;
+    grid-template-areas:
+        "title"
+        "desc"
+        "dueDate"
+        "prio"
+        "delete";
+    gap: 20px;
+}
+
+.task-display-container>.task-title {
+    grid-area: title;
+}
+#delete-task {
+    grid-area: delete;
+    background-color: lightcoral;
+    width: min-content;
+    padding: 8px 24px;
+}
+#delete-task:hover {filter: brightness(1.1);}
