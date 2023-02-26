@@ -1,7 +1,9 @@
+import {compareAsc, format} from 'date-fns';
+
 export default function Task(project, title, desc, dueDate, prio) {
     this.title = title || 'placeholder title';
     this.desc = desc || 'placeholder description';
-    this.dueDate = dueDate || '01/01/2023';
+    this.dueDate = new Date(dueDate) || new Date('01/01/2023');
     this.prio = prio || 1;
     this.checked = false;
 
@@ -16,4 +18,7 @@ Task.prototype.select = function() {
 }
 Task.prototype.delete = function() {
     this.project.deleteTask(this.index);
+}
+Task.prototype.printDate = function() {
+    return format(this.dueDate, 'eeee, MMMM do, yyyy');
 }

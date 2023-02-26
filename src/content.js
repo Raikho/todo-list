@@ -74,7 +74,7 @@ ContentManager.prototype.createTaskDisplay = function(task) {
     let containerNode = DOM.createDiv(this.node, ['task-display-container']);
     DOM.createDiv(containerNode, ['task-title', 'card'], 'Task: ' + task.title);
     DOM.createDiv(containerNode, ['task-desc', 'card'], task.desc);
-    DOM.createDiv(containerNode, ['task-due-date', 'card'], 'Due Date: ' + task.dueDate);
+    DOM.createDiv(containerNode, ['task-due-date', 'card'], 'Due Date: ' + task.printDate());
     DOM.createDiv(containerNode, ['task-prio', 'card'], 'Priority: ' + task.prio);
     // TODO: css classes
 

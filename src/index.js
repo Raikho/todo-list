@@ -17,8 +17,8 @@ document.getElementById('new-project-form').addEventListener('click', () => {
 
 // INITIAL VALUES
 projectManager.createProject('Daily Errands');
-projectManager.projectList[0].createTask('Buy Groceries', 'Pick up groceries from the store.', null, 6);
-projectManager.projectList[0].createTask('Wash Dishes', 'Wash today\'s dishes.', null, 4);
+projectManager.projectList[0].createTask('Buy Groceries', 'Pick up groceries from the store.', '02/10/23', 6);
+projectManager.projectList[0].createTask('Wash Dishes', 'Wash today\'s dishes.', '01/02/23', 4);
 projectManager.projectList[0].createTask('Walk Dog', 'Walk the dog for 15 minutes.', null, 7);
 projectManager.createProject('Monthly Tasks');
 projectManager.projectList[1].createTask('Pay Bills', 'Pay credit card and electric bills.', null, 10);
@@ -30,11 +30,11 @@ contentManager.updateSidebar();
 // START AT FIRST PROJECT DISPLAY
 // let project = projectManager.projectList[0];
 // project.select();
-// let task = projectManager.projectList[0].taskList[0];
-// task.select();
+let task = projectManager.projectList[0].taskList[0];
+task.select();
 contentManager.updateSidebar();
-contentManager.changeState('taskForm', projectManager.projectList[0]);
-// contentManager.changeState('taskDisplay', task);
+// contentManager.changeState('taskForm', projectManager.projectList[0]);
+contentManager.changeState('taskDisplay', task);
 // contentManager.changeState('projectDisplay', project);
 
 
@@ -44,7 +44,8 @@ console.log(projectManager, contentManager)
 // TODO: add dates
 
 // TODO: add GoTo icon
-// TODO: add links to tasks in project display
+// TODO: add links to tasks to project display
+// TODO: add checkboxes to project display
 
 // TODO: sidebar scrollbar
 // TODO: collapseable projects
