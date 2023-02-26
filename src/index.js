@@ -28,13 +28,13 @@ contentManager.changeState('empty');
 contentManager.updateSidebar();
 
 // START AT FIRST PROJECT DISPLAY
-let project = projectManager.projectList[0];
-project.select();
-// let task = projectManager.projectList[0].taskList[0];
-// task.select();
+// let project = projectManager.projectList[0];
+// project.select();
+let task = projectManager.projectList[0].taskList[0];
+task.select();
 contentManager.updateSidebar();
-// contentManager.changeState('taskDisplay', task);
-contentManager.changeState('projectDisplay', project);
+contentManager.changeState('taskDisplay', task);
+// contentManager.changeState('projectDisplay', project);
 
 
 // DEBUG

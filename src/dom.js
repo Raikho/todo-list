@@ -35,5 +35,12 @@ DOM.createButton = function(parentNode, id, classList, textContent) {
     node.id = id;
     return node;
 }
+DOM.createButtonContainer = function(parentNode, id, textContent) {
+    let containerNode = this.createDiv(parentNode, ['button-container'], null);
+    containerNode.id = id;
+    let iconNode = this.createDiv(containerNode, ['icon'], null);
+    let textNode = this.createDiv(containerNode, ['text'], textContent);
+    return containerNode;
+}
 
 export default DOM;

@@ -45,7 +45,7 @@ ContentManager.prototype.createProjectDisplay = function(project) {
         DOM.createDiv(containerNode, ['card'], task.title);
     }
 
-    const buttonNode = DOM.createButton(containerNode, 'new-task-form', null, '');
+    const buttonNode = DOM.createButtonContainer(containerNode, 'new-task-form', 'New Task');
     buttonNode.addEventListener('click', () => {
         this.changeState('taskForm', project);
     });
@@ -75,7 +75,7 @@ ContentManager.prototype.createTaskDisplay = function(task) {
     // TODO: css classes
 
     // Delete Button
-    const deleteButton = DOM.createButton(containerNode, 'delete-task', null, '');
+    const deleteButton = DOM.createButtonContainer(containerNode, 'delete-task', 'Delete');
     deleteButton.addEventListener('click', () => {
         task.delete();
         this.updateSidebar();

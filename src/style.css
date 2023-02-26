@@ -37,17 +37,9 @@ body {
     grid-template-rows: 1fr 15fr;
     grid-template-areas: "header header" "sidebar main";
 }
+/* ============================ Generic ============================ */
+/* ================================================================= */
 
-.button {
-    padding: 4px 12px;
-    border-radius: 4px;
-    background-color: #daa52088;
-}
-.button:hover {
-    background-color: goldenrod;
-}
-.button:active {background-color: orange;}
-.button.back {background-color: #ff450088;}
 
 /* ============================= Header ============================ */
 /* ================================================================= */
@@ -78,6 +70,7 @@ body {
 .sidebar>.list {
     /* border: 1px dotted yellowgreen; */
     padding: 15px;
+    border-bottom: 1px solid #a9a9a9aa;
 
     display: flex;
     flex-direction: column;
@@ -161,16 +154,21 @@ body {
 }
 
 /* ========== Bottom, New Project ========== */
-.sidebar>.bot>.project-form-container {
-    height: 100%;
+.sidebar>.bot {
+    display: flex;
+    align-items: center;
     padding: 0 15px;
-    border-top: 1px solid #a9a9a9aa;
+}
+.button-container {
+    height: min-content;
+    border-radius: 5px;
+    border: 2px solid #0000;
 
     display: flex;
     align-items: center;
     gap: 5px;
 }
-#new-project-form>.button {
+#new-project-form>.icon {
     padding: 0;
 
     -webkit-mask-size: contain;
@@ -182,8 +180,10 @@ body {
     width: 20px;
     height: 20px;
 }
-#new-project-form:hover>.button {background-color: var(--lightGreen);}
-#new-project-form:hover {color: var(--darkGreen);}
+.button-container:hover {border-color: var(--darkGreen);}
+.button-container:active {background-color: rgba(255, 255, 0, 0.5);}
+.button-container:hover>.icon {background-color: var(--lightGreen);}
+.button-container>.text {white-space: nowrap; padding-right: 4px;}
 
 /* ============================ Content ============================ */
 /* ================================================================= */
@@ -218,18 +218,17 @@ div#content>.button {
     font-size: 24px;
     font-weight: 700;
 }
-#new-task-form {
-    padding: 0;
+#new-task-form {width: min-content;}
+#new-task-form>.icon {
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-image: url('assets/add.svg');
     mask-image: url('assets/add.svg');
     background-color: var(--green);
     background-repeat: no-repeat;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
 }
-#new-task-form:hover {background-color: lightgreen;}
 
 /* ========================= Task Display ========================== */
 .task-display-container {
@@ -252,16 +251,17 @@ div#content>.button {
 }
 #delete-task {
     grid-area: delete;
-    padding: 0;
-
+    width: min-content;
+}
+#delete-task>.icon {
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-image: url('assets/delete.svg');
     mask-image: url('assets/delete.svg');
     background-color: var(--red);
     background-repeat: no-repeat;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
 }
-#delete-task:hover {background-color: lightcoral}
+#delete-task:hover {border-color: var(--red);}
 /* ========================= Project Display ========================== */
