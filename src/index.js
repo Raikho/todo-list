@@ -41,10 +41,17 @@ contentManager.changeState('taskForm', projectManager.projectList[0]);
 // DEBUG
 console.log(projectManager, contentManager)
 
-// TODO: reorganize task code location
-// TODO: add icons
-// TODO: add submit form button
+// TODO: add dates
+
+// TODO: add GoTo icon
+// TODO: add links to tasks in project display
+
+// TODO: sidebar scrollbar
+// TODO: collapseable projects
+
+// TODO: Default 'project' to show high priority
+// TODO: Default 'project' to show due soon
+
+// TODO: search bar
+// TODO: search results content page w/ links
 // TODO: form validation
-// TODO: style form
-// TODO: add ability to click tasks
-// TODO: pass node to DOM
