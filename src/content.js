@@ -38,7 +38,7 @@ ContentManager.prototype.createProjectForm = function() {
 
 ContentManager.prototype.createProjectDisplay = function(project) {
     let containerNode = DOM.createDiv(this.node, ['project-display-container']);
-    DOM.createDiv(containerNode, ['card', 'project-title'], 'Project Title: ' + project.name);
+    DOM.createDiv(containerNode, ['card', 'project-title'], 'Project: ' + project.name);
 
     // DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
@@ -72,8 +72,8 @@ ContentManager.prototype.createTaskForm = function(project) {
 
 ContentManager.prototype.createTaskDisplay = function(task) {
     let containerNode = DOM.createDiv(this.node, ['task-display-container']);
-    DOM.createDiv(containerNode, ['task-title', 'card'], 'Task Title: ' + task.title);
-    DOM.createDiv(containerNode, ['task-desc', 'card'], 'Description: ' + task.desc);
+    DOM.createDiv(containerNode, ['task-title', 'card'], 'Task: ' + task.title);
+    DOM.createDiv(containerNode, ['task-desc', 'card'], task.desc);
     DOM.createDiv(containerNode, ['task-due-date', 'card'], 'Due Date: ' + task.dueDate);
     DOM.createDiv(containerNode, ['task-prio', 'card'], 'Priority: ' + task.prio);
     // TODO: css classes
@@ -95,7 +95,7 @@ ContentManager.prototype.updateSidebar = function() {
 
         let projectContainerNode = DOM.createDiv(projectGroupNode, ['project-container']);
         let projectIconNode = DOM.createDiv(projectContainerNode, ['icon']);
-        let projectTitleNode = DOM.createDiv(projectContainerNode, ['title'], project.name + ' #' + project.index);
+        let projectTitleNode = DOM.createDiv(projectContainerNode, ['title'], project.name);
 
         projectContainerNode.dataset.selected = project.selected;
 
@@ -107,7 +107,7 @@ ContentManager.prototype.updateSidebar = function() {
 
         for (let task of project.taskList) {
             let taskContainerNode = DOM.createDiv(projectGroupNode, ['task-container']);
-            let taskNode = DOM.createDiv(taskContainerNode, ['title'], task.title + " #" + task.index);
+            let taskNode = DOM.createDiv(taskContainerNode, ['title'], task.title);
             let taskCheckboxNode = DOM.createDiv(taskContainerNode, ['checkbox']);
 
             taskCheckboxNode.dataset.checked = task.checked;

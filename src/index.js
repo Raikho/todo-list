@@ -16,13 +16,13 @@ document.getElementById('new-project-form').addEventListener('click', () => {
 
 
 // INITIAL VALUES
-projectManager.createProject('Main Project');
-projectManager.projectList[0].createTask('First Task');
-projectManager.projectList[0].createTask('Second Task');
-projectManager.projectList[0].createTask('Third Task');
-projectManager.createProject('Secondary Project');
-projectManager.projectList[1].createTask('First Task');
-projectManager.projectList[1].createTask('Second Task');
+projectManager.createProject('Daily Errands');
+projectManager.projectList[0].createTask('Buy Groceries', 'Pick up groceries from the store.', null, 6);
+projectManager.projectList[0].createTask('Wash Dishes', 'Wash today\'s dishes.', null, 4);
+projectManager.projectList[0].createTask('Walk Dog', 'Walk the dog for 15 minutes.', null, 7);
+projectManager.createProject('Monthly Tasks');
+projectManager.projectList[1].createTask('Pay Bills', 'Pay credit card and electric bills.', null, 10);
+projectManager.projectList[1].createTask('Change Bulbs', 'Change light bulbs that are fused.',null, 5);
 
 contentManager.changeState('empty');
 contentManager.updateSidebar();
