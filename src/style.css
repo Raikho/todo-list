@@ -9,12 +9,14 @@
     --lightGray: #e5e7eb;
     --blue: #3882f6;
     --darkBlue: #1f2937;
+    --darkGreen: #15803d;
 
     --skyBlue: #38bdf8;
     --indigo: #05050788;
     --indigoBrighter: #45455f88;
     --red: #dc2626;
     --green: #16a34a;
+    --lightGreen: #4ade80;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300,400,500,700");
@@ -159,13 +161,29 @@ body {
 }
 
 /* ========== Bottom, New Project ========== */
-.sidebar>.bot {
-    /* border: 1px dotted orange; */
+.sidebar>.bot>.project-form-container {
+    height: 100%;
     padding: 0 15px;
     border-top: 1px solid #a9a9a9aa;
+
     display: flex;
     align-items: center;
+    gap: 5px;
 }
+#new-project-form>.button {
+    padding: 0;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/add-project.svg');
+    mask-image: url('assets/add-project.svg');
+    background-color: var(--green);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+#new-project-form:hover>.button {background-color: var(--lightGreen);}
+#new-project-form:hover {color: var(--darkGreen);}
 
 /* ============================ Content ============================ */
 /* ================================================================= */

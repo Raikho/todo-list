@@ -9,7 +9,7 @@ const projectManager = new ProjectManager();
 const contentManager = new ContentManager(projectManager);
 
 
-document.getElementById('new-project-button').addEventListener('click', () => {
+document.getElementById('new-project-form').addEventListener('click', () => {
     contentManager.changeState('projectForm');
 });
 
