@@ -42,8 +42,24 @@ ContentManager.prototype.createProjectDisplay = function(project) {
 
     // DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
-        DOM.createDiv(containerNode, ['card'], task.title);
+        let taskContainer = DOM.createDiv(containerNode, ['card', 'task-summary'], );
+        let checkboxNode = DOM.createDiv(taskContainer, ['checkbox'], null);
+        checkboxNode.dataset.checked = task.checked;
+        checkboxNode.addEventListener('click', () => {
+            task.checked = !task.checked;
+            this.updateSidebar();
+            this.update(project);
+        });
+
+        DOM.createDiv(taskContainer, ['title'], task.title);
+        let linkNode = DOM.createDiv(taskContainer, ['link'], null);
+        linkNode.addEventListener('click', () => {
+            task.select();
+            this.updateSidebar();
+            this.changeState('taskDisplay', task);
+        });
     }
+
 
     const buttonNode = DOM.createButtonContainer(containerNode, 'new-task-form', 'New Task');
     buttonNode.addEventListener('click', () => {
@@ -116,6 +132,8 @@ ContentManager.prototype.updateSidebar = function() {
             taskCheckboxNode.addEventListener('click', () => {
                 task.checked = !task.checked;
                 this.updateSidebar();
+                if (this.state === 'projectDisplay')
+                    this.update(project);
             });
             taskNode.addEventListener('click', () => {
                 task.select();

@@ -12,7 +12,7 @@
     --darkGreen: #15803d;
 
     --skyBlue: #38bdf8;
-    --indigo: #05050788;
+    --indigo: #050507aa;
     --indigoBrighter: #45455f88;
     --red: #dc2626;
     --green: #16a34a;
@@ -219,6 +219,40 @@ div#content>.button {
     font-size: 24px;
     font-weight: 700;
 }
+
+.task-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.task-summary>.checkbox {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/checkbox-unchecked.svg');
+    mask-image: url('assets/checkbox-unchecked.svg');
+    background-color: var(--indigo);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+.task-summary>.checkbox:hover {background-color: var(--indigoBrighter);}
+.task-summary>.checkbox[data-checked = 'true'] {
+    -webkit-mask-image: url('assets/checkbox-checked.svg');
+    mask-image: url('assets/checkbox-checked.svg');
+}
+.task-summary>.link {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/open.svg');
+    mask-image: url('assets/open.svg');
+    background-color: var(--indigo);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+.task-summary>.link:hover {background-color: var(--skyBlue);}
+
+
 #new-task-form {width: min-content;}
 #new-task-form>.icon {
     -webkit-mask-size: contain;

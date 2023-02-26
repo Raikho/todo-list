@@ -28,20 +28,18 @@ contentManager.changeState('empty');
 contentManager.updateSidebar();
 
 // START AT FIRST PROJECT DISPLAY
-// let project = projectManager.projectList[0];
-// project.select();
-let task = projectManager.projectList[0].taskList[0];
-task.select();
+let project = projectManager.projectList[0];
+project.select();
+// let task = projectManager.projectList[0].taskList[0];
+// task.select();
 contentManager.updateSidebar();
 // contentManager.changeState('taskForm', projectManager.projectList[0]);
-contentManager.changeState('taskDisplay', task);
-// contentManager.changeState('projectDisplay', project);
+// contentManager.changeState('taskDisplay', task);
+contentManager.changeState('projectDisplay', project);
 
 
 // DEBUG
 console.log(projectManager, contentManager)
-
-// TODO: add dates
 
 // TODO: add GoTo icon
 // TODO: add links to tasks to project display
