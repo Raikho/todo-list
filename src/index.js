@@ -27,11 +27,14 @@ projectManager.projectList[1].createTask('Second Task');
 contentManager.changeState('empty');
 contentManager.updateSidebar();
 
-// START AT FIRST TASK DISPLAY
-let task = projectManager.projectList[0].taskList[0];
-task.select();
+// START AT FIRST PROJECT DISPLAY
+let project = projectManager.projectList[0];
+project.select();
+// let task = projectManager.projectList[0].taskList[0];
+// task.select();
 contentManager.updateSidebar();
-contentManager.changeState('taskDisplay', task);
+// contentManager.changeState('taskDisplay', task);
+contentManager.changeState('projectDisplay', project);
 
 
 // DEBUG

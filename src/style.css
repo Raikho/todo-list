@@ -13,6 +13,8 @@
     --skyBlue: #38bdf8;
     --indigo: #05050788;
     --indigoBrighter: #45455f88;
+    --red: #dc2626;
+    --green: #16a34a;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300,400,500,700");
@@ -179,7 +181,6 @@ div#content {
 div#content>.button {
     margin: 20px 0 0 0;
 }
-/* ========================= Task Display ========================== */
 .card {
     padding: 20px 0;
     border-top: 2px solid lightgray;
@@ -187,14 +188,36 @@ div#content>.button {
     /* background-color: rgba(173, 216, 230, 0.216); */
     height: min-content;
 }
-.card:first-of-type {
-    border-top: none;
+.card:first-of-type {border-top: none;}
+/* ======================== Project Display ======================== */
+.project-display-container {
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
 }
+.project-display-container>.project-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+#new-task-form {
+    padding: 0;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/add.svg');
+    mask-image: url('assets/add.svg');
+    background-color: var(--green);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+#new-task-form:hover {background-color: lightgreen;}
+
+/* ========================= Task Display ========================== */
 .task-display-container {
     padding: 40px;
 
     display: grid;
-    grid-template-columns: 1fr;
     grid-template-rows: repeat(min-content, 5);
     grid-template-areas:
         "title"
@@ -211,9 +234,16 @@ div#content>.button {
 }
 #delete-task {
     grid-area: delete;
-    background-color: lightcoral;
-    width: min-content;
-    padding: 8px 24px;
+    padding: 0;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/delete.svg');
+    mask-image: url('assets/delete.svg');
+    background-color: var(--red);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
 }
-#delete-task:hover {filter: brightness(1.1);}
+#delete-task:hover {background-color: lightcoral}
 /* ========================= Project Display ========================== */

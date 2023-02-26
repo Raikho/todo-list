@@ -38,14 +38,14 @@ ContentManager.prototype.createProjectForm = function() {
 
 ContentManager.prototype.createProjectDisplay = function(project) {
     let containerNode = DOM.createDiv(this.node, ['project-display-container']);
-    DOM.createDiv(containerNode, ['card'], 'Project Title: ' + project.name);
+    DOM.createDiv(containerNode, ['card', 'project-title'], 'Project Title: ' + project.name);
 
-    DOM.createDiv(containerNode, null, 'Tasks: ');
+    // DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
-        DOM.createDiv(containerNode, null, task.title);
+        DOM.createDiv(containerNode, ['card'], task.title);
     }
 
-    const buttonNode = DOM.createButton(this.node, 'create-new-task', null, 'Create New Task');
+    const buttonNode = DOM.createButton(containerNode, 'new-task-form', null, '');
     buttonNode.addEventListener('click', () => {
         this.changeState('taskForm', project);
     });
@@ -68,14 +68,14 @@ ContentManager.prototype.createTaskForm = function(project) {
 
 ContentManager.prototype.createTaskDisplay = function(task) {
     let containerNode = DOM.createDiv(this.node, ['task-display-container']);
-    DOM.createDiv(containerNode, ['task-title', 'card'], 'Title: ' + task.title);
+    DOM.createDiv(containerNode, ['task-title', 'card'], 'Task Title: ' + task.title);
     DOM.createDiv(containerNode, ['task-desc', 'card'], 'Description: ' + task.desc);
     DOM.createDiv(containerNode, ['task-due-date', 'card'], 'Due Date: ' + task.dueDate);
     DOM.createDiv(containerNode, ['task-prio', 'card'], 'Priority: ' + task.prio);
     // TODO: css classes
 
     // Delete Button
-    const deleteButton = DOM.createButton(containerNode, 'delete-task', null, 'Delete Task');
+    const deleteButton = DOM.createButton(containerNode, 'delete-task', null, '');
     deleteButton.addEventListener('click', () => {
         task.delete();
         this.updateSidebar();
