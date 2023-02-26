@@ -21,12 +21,11 @@ DOM.createDiv = function(parentNode, classList, textContent) {
 }
 
 DOM.createLabeledInput = function(parentNode, inputType, id, textContent) {
-    let labelNode = this.createNode(parentNode, 'label', null, textContent);
-    labelNode.setAttribute('for', id);
     let inputNode = this.createNode(parentNode, 'input');
     inputNode.type = inputType;
     inputNode.id = id;
-    return [labelNode, inputNode];
+    inputNode.setAttribute('placeholder', textContent);
+    return inputNode;
 }
 
 DOM.createButton = function(parentNode, id, classList, textContent) {

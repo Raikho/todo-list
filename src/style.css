@@ -17,6 +17,9 @@
     --red: #dc2626;
     --green: #16a34a;
     --lightGreen: #4ade80;
+    --lightSlate: #e2e8f0;
+    --medSlate: #94a3b8;
+    --darkSlate: #475569;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300,400,500,700");
@@ -181,7 +184,7 @@ body {
     height: 20px;
 }
 .button-container:hover {border-color: var(--darkGreen);}
-.button-container:active {background-color: rgba(255, 255, 0, 0.5);}
+.button-container:active {background-color: rgba(164, 164, 54, 0.248);}
 .button-container:hover>.icon {background-color: var(--lightGreen);}
 .button-container>.text {white-space: nowrap; padding-right: 4px;}
 
@@ -189,7 +192,7 @@ body {
 /* ================================================================= */
 div#content {
     background-color: var(--offwhite);
-    padding: 15px;
+    padding: 50px;
 
     grid-area: main;
 
@@ -209,8 +212,6 @@ div#content>.button {
 .card:first-of-type {border-top: none;}
 /* ======================== Project Display ======================== */
 .project-display-container {
-    padding: 40px;
-
     display: flex;
     flex-direction: column;
 }
@@ -232,8 +233,6 @@ div#content>.button {
 
 /* ========================= Task Display ========================== */
 .task-display-container {
-    padding: 40px;
-
     display: grid;
     grid-template-rows: repeat(min-content, 5);
     grid-template-areas:
@@ -264,4 +263,59 @@ div#content>.button {
     height: 20px;
 }
 #delete-task:hover {border-color: var(--red);}
-/* ========================= Project Display ========================== */
+
+/* ========================= Project Form ========================== */
+input {
+    border: none;
+    outline: 0;
+    padding: 5px;
+    border-radius: 4px;
+    background: var(--lightSlate);
+    color: var(--darkSlate);
+    box-shadow: 3px 3px 6px rgba(0,0,0,.05) inset;
+    margin-bottom: 30px;
+}
+input::placeholder {
+    color: var(--medSlate);
+}
+
+#create-new-project {width: min-content;}
+#create-new-project>.icon {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/add.svg');
+    mask-image: url('assets/add.svg');
+    background-color: var(--green);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+#create-new-project:hover {border-color: var(--green);}
+
+/* =========================== Task Form =========================== */
+.task-form-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+}
+.task-form-container>* {
+    grid-column: 1 / 2;
+}
+#task-title,
+#task-desc {
+    grid-column: span 2;
+}
+#task-due-date {color: var(--medSlate);}
+
+#create-new-task {width: min-content;}
+#create-new-task>.icon {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: url('assets/add.svg');
+    mask-image: url('assets/add.svg');
+    background-color: var(--green);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+#create-new-task:hover {border-color: var(--green);}
+

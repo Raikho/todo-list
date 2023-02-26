@@ -26,8 +26,8 @@ ContentManager.prototype.update = function(item) {
 
 ContentManager.prototype.createProjectForm = function() {
     let containerNode = DOM.createDiv(this.node, ['project-form-container']);
-    const [_, inputNode] = DOM.createLabeledInput(containerNode, 'text', 'project-title', 'Project Title');
-    const buttonNode = DOM.createButton(containerNode, 'create-new-project', null, 'Create New Project');
+    const inputNode = DOM.createLabeledInput(containerNode, 'text', 'project-title', 'Project Title');
+    const buttonNode = DOM.createButtonContainer(containerNode, 'create-new-project', 'Add Project');
 
     buttonNode.addEventListener('click', () => {
         this.projectManager.createProject(inputNode.value || 'Default Project Title');
@@ -53,16 +53,20 @@ ContentManager.prototype.createProjectDisplay = function(project) {
 
 ContentManager.prototype.createTaskForm = function(project) {
     let containerNode = DOM.createDiv(this.node, ['task-form-container']);
-    let [_, titleNode] = DOM.createLabeledInput(containerNode, 'text', 'task-title', 'Task Title');
-    let [__, descNode] = DOM.createLabeledInput(containerNode, 'text', 'task-desc', 'Task Description');
-    let [___, dueDateNode] = DOM.createLabeledInput(containerNode, 'date', 'task-due-date', 'Task Due Date');
-    let [____, prioNode] = DOM.createLabeledInput(containerNode, 'number', 'task-prio', 'Task Priority');
+    let titleNode = DOM.createLabeledInput(containerNode, 'text', 'task-title', 'Task Title');
+    let descNode = DOM.createLabeledInput(containerNode, 'text', 'task-desc', 'Task Description');
+    let dueDateNode = DOM.createLabeledInput(containerNode, 'date', 'task-due-date', 'Task Due Date');
+    let prioNode = DOM.createLabeledInput(containerNode, 'number', 'task-prio', 'Task Priority');
+    prioNode.setAttribute('max', '10');
+    prioNode.setAttribute('min', '1');
 
-    const buttonNode = DOM.createButton(containerNode, 'create-new-task', null, 'Create New Task');
+
+    const buttonNode = DOM.createButtonContainer(containerNode, 'create-new-task', 'Add Task');
 
     buttonNode.addEventListener('click', () => {
         project.createTask(titleNode.value, descNode.value, dueDateNode.value, prioNode.value);
         this.updateSidebar();
+        this.changeState('empty');
     });
 }
 
