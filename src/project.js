@@ -1,4 +1,5 @@
 import Task from './task.js';
+import {differenceInDays} from 'date-fns';
 
 export default function ProjectManager() {
     this.projectList = [];
@@ -34,6 +35,14 @@ ProjectManager.prototype.update = function() {
         if (project.type === 'prio') {
             project.taskList = this.getAllTasks().filter((task) => {
                 return (task.prio >= project.filter);
+            });
+        }
+        if (project.type === 'dueSoon') {
+            console.log('iterating over due soon tasks...');
+            let today = new Date();
+            project.taskList = this.getAllTasks().filter((task) => {
+                let daysLeft = differenceInDays(task.dueDate, today);
+                return (daysLeft <= project.filter);
             });
         }
     }

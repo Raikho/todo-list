@@ -38,7 +38,7 @@ ContentManager.prototype.createProjectForm = function() {
 
 ContentManager.prototype.createProjectDisplay = function(project) {
     let containerNode = DOM.createDiv(this.node, ['project-display-container']);
-    DOM.createDiv(containerNode, ['card', 'project-title'], 'Project: ' + project.name);
+    DOM.createDiv(containerNode, ['card', 'project-title'], project.name);
 
     // DOM.createDiv(containerNode, null, 'Tasks: ');
     for (let task of project.taskList) {
@@ -98,6 +98,7 @@ ContentManager.prototype.createTaskDisplay = function(task) {
     const deleteButton = DOM.createButtonContainer(containerNode, 'delete-task', 'Delete');
     deleteButton.addEventListener('click', () => {
         task.delete();
+        this.projectManager.update();
         this.updateSidebar();
         this.changeState('empty');
     });
