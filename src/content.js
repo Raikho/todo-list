@@ -112,16 +112,23 @@ ContentManager.prototype.updateSidebar = function() {
         let projectContainerNode = DOM.createDiv(projectGroupNode, ['project-container']);
         let projectIconNode = DOM.createDiv(projectContainerNode, ['icon']);
         let projectTitleNode = DOM.createDiv(projectContainerNode, ['title'], project.name);
+        let projectCollapseNode = DOM.createDiv(projectContainerNode, ['collapse']);
 
         projectContainerNode.dataset.selected = project.selected;
+        projectCollapseNode.dataset.collapsed = project.collapsed;
 
         projectTitleNode.addEventListener('click', () => {
             project.select();
             this.updateSidebar();
             this.changeState('projectDisplay', project);
         });
+        projectCollapseNode.addEventListener('click', () => {
+            project.toggleCollapsed();
+            this.updateSidebar();
+        });
 
         for (let task of project.taskList) {
+            if (project.collapsed) continue;
             let taskContainerNode = DOM.createDiv(projectGroupNode, ['task-container']);
             let taskNode = DOM.createDiv(taskContainerNode, ['title'], task.title);
             let taskCheckboxNode = DOM.createDiv(taskContainerNode, ['checkbox']);

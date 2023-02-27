@@ -28,6 +28,7 @@ function Project(manager, name, index) {
     this.name = name;   // TODO: convert name to title
     this.taskList = [];
     this.selectedTask = null;
+    this.collapsed = false;
 
     this.manager = manager;
     this.selected = false;
@@ -53,4 +54,7 @@ Project.prototype.deleteTask = function(index) {
     for (let i = 0; i < this.taskList.length; i++) {
         this.taskList[i].index = i;
     }
+}
+Project.prototype.toggleCollapsed = function() {
+    this.collapsed = !this.collapsed;
 }

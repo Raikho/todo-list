@@ -105,8 +105,8 @@ body {
 /* ========== Project Container ========== */
 .project-container {
     display: grid;
-    grid-template-columns: 20px 5px 1fr;
-    grid-template-areas: "icon .. title";
+    grid-template-columns: 20px 5px 1fr 20px;
+    grid-template-areas: "icon .. title collapse";
 }
 .project-container>.icon {
     grid-area: icon;
@@ -122,6 +122,24 @@ body {
 .project-container>.title {
     grid-area: title;
     font-weight: 700;
+}
+.project-container>.collapse {
+    grid-area: collapse;
+
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url('assets/collapse.svg');
+    mask-image: url('assets/collapse.svg');
+    background-color: var(--darkBlue);
+    width: 20px;
+    height: 20px;
+}
+.project-container>.collapse[data-collapsed="true"] {
+    -webkit-mask-image: url('assets/uncollapse.svg');
+    mask-image: url('assets/uncollapse.svg');
+}
+.project-container>.collapse:hover {
+    background-color: var(--blue);
 }
 .project-container[data-selected="true"],
 .task-container[data-selected="true"] {
