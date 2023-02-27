@@ -30,7 +30,7 @@ contentManager.updateSidebar();
 // START AT FIRST PROJECT DISPLAY
 let project = projectManager.projectList[0];
 project.select();
-// let task = projectManager.projectList[0].taskList[0];
+let task = projectManager.projectList[0].taskList[0];
 // task.select();
 contentManager.updateSidebar();
 // contentManager.changeState('taskForm', projectManager.projectList[0]);
@@ -40,10 +40,6 @@ contentManager.changeState('projectDisplay', project);
 
 // DEBUG
 console.log(projectManager, contentManager)
-
-// TODO: add GoTo icon
-// TODO: add links to tasks to project display
-// TODO: add checkboxes to project display
 
 // TODO: sidebar scrollbar
 // TODO: collapseable projects

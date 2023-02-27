@@ -22,22 +22,19 @@
     --darkSlate: #475569;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300,400,500,700");
-
 body {
     width: 100vw;
     height: 100vh;
     margin: 0 0;
 
     color: var(--darkBlue);
-    /* font-family: 'Roboto'; */
     font-family: Helvetica;
     font-weight: 400;
     font-size: 16px;
 
     display: grid;
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 15fr;
+    grid-template-rows: 5vh 95vh;
     grid-template-areas: "header header" "sidebar main";
 }
 /* ============================ Generic ============================ */
@@ -68,16 +65,26 @@ body {
     z-index: 1;
 
     display: grid;
-    grid-template-rows: 15fr 1fr;
+    grid-template-rows: 85vh 10vh;
 }
 .sidebar>.list {
     /* border: 1px dotted yellowgreen; */
     padding: 15px;
     border-bottom: 1px solid #a9a9a9aa;
+    height: 85vh;
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+::-webkit-scrollbar {width: 17px;}
+::-webkit-scrollbar-track {background-color: tarnsparent;}
+::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+    border-radius: 17px;
+    border: 7px solid transparent;
+    background-clip: content-box;
 }
 
 /* ========== Project Group ========== */
@@ -191,17 +198,16 @@ body {
 /* ============================ Content ============================ */
 /* ================================================================= */
 div#content {
+    grid-area: main;
+
     background-color: var(--offwhite);
     padding: 50px;
-
-    grid-area: main;
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
 }
-div#content>.button {
-    margin: 20px 0 0 0;
-}
+
 .card {
     padding: 20px 0;
     border-top: 2px solid lightgray;
