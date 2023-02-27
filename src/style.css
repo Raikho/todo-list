@@ -65,10 +65,10 @@ body {
     z-index: 1;
 
     display: grid;
-    grid-template-rows: 85vh 10vh;
+    grid-template-rows: 15fr 1fr;
 }
 .sidebar>.list {
-    /* border: 1px dotted yellowgreen; */
+    /* border: 2px dotted yellowgreen; */
     padding: 15px;
     border-bottom: 1px solid #a9a9a9aa;
     height: 85vh;
@@ -186,6 +186,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 15px;
+    /* border: 2px dotted red; */
 }
 .button-container {
     height: min-content;

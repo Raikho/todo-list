@@ -23,6 +23,9 @@ projectManager.projectList[0].createTask('Walk Dog', 'Walk the dog for 15 minute
 projectManager.createProject('Monthly Tasks');
 projectManager.projectList[1].createTask('Pay Bills', 'Pay credit card and electric bills.', null, 10);
 projectManager.projectList[1].createTask('Change Bulbs', 'Change light bulbs that are fused.',null, 5);
+for (let i=0; i<40; i++) {
+    projectManager.projectList[1].createTask('Change Bulbs', 'Change light bulbs that are fused.',null, 5);
+}
 
 contentManager.changeState('empty');
 contentManager.updateSidebar();
@@ -41,7 +44,6 @@ contentManager.changeState('projectDisplay', project);
 // DEBUG
 console.log(projectManager, contentManager)
 
-// TODO: sidebar scrollbar
 // TODO: collapseable projects
 
 // TODO: Default 'project' to show high priority
