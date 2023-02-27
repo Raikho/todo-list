@@ -115,6 +115,7 @@ ContentManager.prototype.updateSidebar = function() {
         let projectTitleNode = DOM.createDiv(projectContainerNode, ['title'], project.name);
         let projectCollapseNode = DOM.createDiv(projectContainerNode, ['collapse']);
 
+        projectIconNode.dataset.type = project.type;
         projectContainerNode.dataset.selected = project.selected;
         projectCollapseNode.dataset.collapsed = project.collapsed;
 

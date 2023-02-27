@@ -119,6 +119,16 @@ body {
     width: 20px;
     height: 20px;
 }
+.project-container>.icon[data-type="prio"] {
+    -webkit-mask-image: url('assets/high-priority.svg');
+    mask-image: url('assets/high-priority.svg');
+    background-color: orangered;
+}
+.project-container>.icon[data-type="dueSoon"] {
+    -webkit-mask-image: url('assets/due-soon.svg');
+    mask-image: url('assets/due-soon.svg');
+    background-color: orange;
+}
 .project-container>.title {
     grid-area: title;
     font-weight: 700;
