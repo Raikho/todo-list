@@ -41,5 +41,16 @@ DOM.createButtonContainer = function(parentNode, id, textContent) {
     let textNode = this.createDiv(containerNode, ['text'], textContent);
     return containerNode;
 }
+DOM.createRangeContainer = function(parentNode, min, max, default_value, textContent, sliderUnits = '') {
+    let textNode = this.createDiv(parentNode, ['text'], textContent);
+    let sliderNode = this.createNode(parentNode, 'input');
+    sliderNode.setAttribute('type', 'range');
+    sliderNode.setAttribute('min', min);
+    sliderNode.setAttribute('max', max);
+    sliderNode.setAttribute('value', default_value);
+    let valueNode = this.createDiv(parentNode, ['input-value'], sliderNode.value + sliderUnits);
+    sliderNode.addEventListener('change', () => {valueNode.textContent = sliderNode.value + sliderUnits;});
+    return sliderNode;
+}
 
 export default DOM;

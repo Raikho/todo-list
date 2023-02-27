@@ -58,6 +58,34 @@ ContentManager.prototype.createProjectDisplay = function(project) {
             this.updateSidebar();
             this.changeState('taskDisplay', task);
         });
+
+    }
+
+    if (project.type === 'prio') {
+        let sliderContainerNode = DOM.createDiv(containerNode, ['slider-container'], null);
+        let sliderNode = DOM.createRangeContainer(sliderContainerNode, 1, 10, project.filter, 'Adjust Priority Level: ');
+        let applyNode = DOM.createDiv(sliderContainerNode, ['apply-button'], 'Apply');
+
+        applyNode.addEventListener('click', () => {
+            project.filter = Number(sliderNode.value);
+            this.projectManager.update();
+            this.updateSidebar();
+            this.update(project);
+        });
+    }
+
+    if (project.type === 'dueSoon') {
+        let sliderContainerNode = DOM.createDiv(containerNode, ['slider-container'], null);
+        let sliderNode = DOM.createRangeContainer(sliderContainerNode, 1, 30, project.filter,
+                                                  'Adjust Days Before Due Limit: ', ' days');
+        let applyNode = DOM.createDiv(sliderContainerNode, ['apply-button'], 'Apply');
+
+        applyNode.addEventListener('click', () => {
+            project.filter = Number(sliderNode.value);
+            this.projectManager.update();
+            this.updateSidebar();
+            this.update(project);
+        });
     }
 
 

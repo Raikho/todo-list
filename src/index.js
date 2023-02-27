@@ -48,7 +48,6 @@ console.log(projectManager, contentManager);
 
 // TODO: add options to chagne high priority  filter prio, due date filter
 // TODO: add options to change
-// TODO: change icons based on project type
 
 
 // TODO: search bar
