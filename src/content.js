@@ -59,6 +59,10 @@ ContentManager.prototype.createProjectDisplay = function(project) {
             this.changeState('taskDisplay', task);
         });
 
+        if (project.type === 'prio')
+            DOM.createDiv(taskContainer, ['extra'], 'Priority: ' + task.prio);
+        if (project.type === 'dueSoon')
+            DOM.createDiv(taskContainer, ['extra'], 'Due in: ' + task.getDaysLeft());
     }
 
     if (project.type === 'prio') {

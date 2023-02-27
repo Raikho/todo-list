@@ -1,4 +1,4 @@
-import {compareAsc, format} from 'date-fns';
+import {differenceInDays, format} from 'date-fns';
 
 export default function Task(project, title, desc, dueDate, prio) {
     this.title = title || 'placeholder title';
@@ -21,4 +21,13 @@ Task.prototype.delete = function() {
 }
 Task.prototype.printDate = function() {
     return format(this.dueDate, 'eeee, MMMM do, yyyy');
+}
+Task.prototype.getDaysLeft = function() {
+    let days = differenceInDays(this.dueDate, new Date());
+    if (days == 0)
+        return 'Due Today';
+    else if (days < 0)
+        return 'Past Due';
+    else
+        return 'Due in ' + days + ' days';
 }
