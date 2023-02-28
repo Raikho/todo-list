@@ -92,11 +92,12 @@ ContentManager.prototype.createProjectDisplay = function(project) {
         });
     }
 
-
-    const buttonNode = DOM.createButtonContainer(containerNode, 'new-task-form', 'New Task');
-    buttonNode.addEventListener('click', () => {
-        this.changeState('taskForm', project);
-    });
+    if (project.type === 'custom') {
+        const buttonNode = DOM.createButtonContainer(containerNode, 'new-task-form', 'New Task');
+        buttonNode.addEventListener('click', () => {
+            this.changeState('taskForm', project);
+        });
+    }
 }
 
 ContentManager.prototype.createTaskForm = function(project) {
