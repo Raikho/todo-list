@@ -16,6 +16,10 @@ Task.prototype.select = function() {
     this.project.manager.clearSelection();
     this.selected = true;
 }
+Task.prototype.check = function() {
+    this.checked = !this.checked;
+    this.project.manager.update();
+}
 Task.prototype.delete = function() {
     this.project.deleteTask(this.index);
 }

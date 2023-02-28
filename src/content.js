@@ -170,7 +170,7 @@ ContentManager.prototype.updateSidebar = function() {
             taskContainerNode.dataset.selected = task.selected;
 
             taskCheckboxNode.addEventListener('click', () => {
-                task.checked = !task.checked;
+                task.check();
                 this.updateSidebar();
                 if (this.state === 'projectDisplay')
                     this.update(project);

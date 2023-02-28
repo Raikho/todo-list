@@ -1,5 +1,6 @@
 import Task from './task.js';
 import {differenceInDays} from 'date-fns';
+import {parse, stringify, toJSON, fromJSON} from 'flatted';
 
 export default function ProjectManager() {
     this.projectList = [];
@@ -46,6 +47,36 @@ ProjectManager.prototype.update = function() {
             });
         }
     }
+    sessionStorage.setItem('projectList', this.exportProjects());
+}
+ProjectManager.prototype.exportProjects = function() {
+    return stringify(this.projectList);
+}
+ProjectManager.prototype.importProjects = function(projectArray) {
+    this.projectList = [];
+    for (let project of parse(projectArray)) {
+        let newProject = new Project(this, project.name, this.projectList.length, project.type);
+        newProject.name = project.name;
+        newProject.selectedTask = project.selectedTask;
+        newProject.collapsed = project.collapsed;
+        newProject.manager = this;
+        newProject.selected = project.selected;
+        newProject.index = project.index;
+        newProject.type = project.type;
+        newProject.filter = project.filter;
+
+        for (let task of project.taskList) {
+            let newTask = new Task(newProject, task.title, task.desc, task.dueDate, task.prio);
+            newTask.checked = task.checked;
+            newTask.selected = task.selected;
+            newTask.index = task.index;
+
+            newProject.taskList.push(newTask);
+        }
+
+        this.projectList.push(newProject);
+    }
+    this.update();
 }
 
 
