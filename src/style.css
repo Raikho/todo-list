@@ -76,7 +76,7 @@ body {
 }
 .sidebar>.list {
     /* border: 2px dotted yellowgreen; */
-    padding: 15px;
+    padding: 15px min(15px, 5%);
     border-bottom: 1px solid #a9a9a9aa;
     height: 85vh;
     overflow-y: auto;
@@ -407,8 +407,8 @@ input::placeholder {
     grid-column: span 2;
 }
 #task-due-date {color: var(--medSlate);}
-
 #create-new-task {width: min-content;}
+.task-form-container>.slider-container {width: 200px;}
 #create-new-task>.icon {
     -webkit-mask-size: contain;
     mask-size: contain;

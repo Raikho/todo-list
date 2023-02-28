@@ -41,12 +41,12 @@ contentManager.updateSidebar();
 // contentManager.changeState('taskForm', projectManager.projectList[0]);
 // contentManager.changeState('taskDisplay', task);
 contentManager.changeState('projectDisplay', project);
+contentManager.changeState('taskForm', project);
 
 
 // DEBUG
 console.log(projectManager, contentManager);
 
-// TODO: add range for due date in Task Form
 // TODO: form validation
 
 // TODO: search bar

@@ -104,10 +104,9 @@ ContentManager.prototype.createTaskForm = function(project) {
     let titleNode = DOM.createLabeledInput(containerNode, 'text', 'task-title', 'Task Title');
     let descNode = DOM.createLabeledInput(containerNode, 'text', 'task-desc', 'Task Description');
     let dueDateNode = DOM.createLabeledInput(containerNode, 'date', 'task-due-date', 'Task Due Date');
-    let prioNode = DOM.createLabeledInput(containerNode, 'number', 'task-prio', 'Task Priority');
-    prioNode.setAttribute('max', '10');
-    prioNode.setAttribute('min', '1');
 
+    let sliderContainerNode = DOM.createDiv(containerNode, ['slider-container'], null);
+    let prioNode = DOM.createRangeContainer(sliderContainerNode, 1, 10, 5, 'Priority: ');
 
     const buttonNode = DOM.createButtonContainer(containerNode, 'create-new-task', 'Add Task');
 
