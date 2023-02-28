@@ -20,6 +20,13 @@
     --lightSlate: #e2e8f0;
     --medSlate: #94a3b8;
     --darkSlate: #475569;
+
+    --iconSize: 20px;
+}
+@media screen and (max-width: 480px) {
+    :root {
+        --iconSize: 15px;
+    }
 }
 
 body {
@@ -230,12 +237,13 @@ div#content {
     grid-area: main;
 
     background-color: var(--offwhite);
-    padding: 50px;
+    padding: min(50px, 10%);
     overflow-y: auto;
 
     display: flex;
     flex-direction: column;
 }
+@media screen and (max-width: 600px) {div#content{font-size: 12px;}}
 
 .card {
     padding: 20px 0;
@@ -261,14 +269,14 @@ div#content {
     gap: 10px;
 }
 .task-summary>.checkbox {
-    -webkit-mask-size: contain;
-    mask-size: contain;
+    -webkit-mask-size: cover;
+    mask-size: cover;
     -webkit-mask-image: url('assets/checkbox-unchecked.svg');
     mask-image: url('assets/checkbox-unchecked.svg');
     background-color: var(--indigo);
     background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
+    width: var(--iconSize);
+    height: var(--iconSize);
 }
 .task-summary>.checkbox:hover {background-color: var(--indigoBrighter);}
 .task-summary>.checkbox[data-checked = 'true'] {
@@ -276,14 +284,14 @@ div#content {
     mask-image: url('assets/checkbox-checked.svg');
 }
 .task-summary>.link {
-    -webkit-mask-size: contain;
-    mask-size: contain;
+    -webkit-mask-size: cover;
+    mask-size: cover;
     -webkit-mask-image: url('assets/open.svg');
     mask-image: url('assets/open.svg');
     background-color: var(--indigo);
     background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
+    width: var(--iconSize);
+    height: var(--iconSize);
 }
 .task-summary>.link:hover {background-color: var(--skyBlue);}
 
@@ -306,7 +314,10 @@ div#content {
     align-items: center;
     padding: 20px 0;
 }
-.slider-container>input {margin: 0;}
+.slider-container>input {
+    width: min(100px, 50%);
+    margin: 0;
+}
 .slider-container>.input-value {
     font-weight: 700;
     background-color: var(--header);

@@ -46,10 +46,8 @@ contentManager.changeState('projectDisplay', project);
 // DEBUG
 console.log(projectManager, contentManager);
 
-// TODO: add options to chagne high priority  filter prio, due date filter
-// TODO: add options to change
-
+// TODO: add range for due date in Task Form
+// TODO: form validation
 
 // TODO: search bar
 // TODO: search results content page w/ links
-// TODO: form validation
