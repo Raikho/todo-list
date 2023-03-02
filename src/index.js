@@ -57,4 +57,3 @@ console.log(projectManager, contentManager);
 // TODO: search bar
 // TODO: search results content page w/ links
 // TODO: local storage
-// TODO: remove new task on non custom categories
